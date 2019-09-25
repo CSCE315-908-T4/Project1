@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="PostgreSQL - CSCE315-908-T4_MovieDB@db-315.cse.tamu.edu" uuid="b9b9c2dc-f9a1-491b-969f-294b3a9bb39e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://db-315.cse.tamu.edu:5432/</jdbc-url>
+    </data-source>
+  </component>
+</project>
