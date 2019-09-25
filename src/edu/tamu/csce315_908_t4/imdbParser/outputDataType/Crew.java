@@ -1,4 +1,4 @@
-package edu.tamu.csce315_908_t4.imdbParser.dataTypes;
+package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
 public class Crew {
     private String tconst;
