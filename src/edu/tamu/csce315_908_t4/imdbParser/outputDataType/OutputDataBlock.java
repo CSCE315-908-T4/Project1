@@ -17,6 +17,10 @@ public class OutputDataBlock{
     private ArrayList<TitleBasic> titleBasic;
     private ArrayList<TitleGenre> titleGenre;
 
+    public static void sendToFiles(OutputDataBlock outputDataBlock, ArrayList<String> filePaths){
+
+    }
+
     public OutputDataBlock(InputDataBlock inputDataBlock){
         akas = new ArrayList<>(inputDataBlock.getTitleAKAs().size());
         characters = new ArrayList<>();

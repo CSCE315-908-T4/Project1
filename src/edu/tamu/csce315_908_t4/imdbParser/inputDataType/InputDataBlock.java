@@ -11,6 +11,10 @@ public class InputDataBlock{
     private ArrayList<TitlePrincipal> titlePrincipals;
     private ArrayList<TitleRatings> titleRatings;
 
+    public static InputDataBlock readFromFiles(ArrayList<String> filePaths){
+        return null;
+    }
+
     public InputDataBlock(ArrayList<NameBasic> nameBasics, ArrayList<TitleAKA> titleAKAs, ArrayList<TitleBasics> titleBasics, ArrayList<TitleCrew> titleCrews, ArrayList<TitleEpisode> titleEpisodes, ArrayList<TitlePrincipal> titlePrincipals, ArrayList<TitleRatings> titleRatings){
         this.nameBasics = nameBasics;
         this.titleAKAs = titleAKAs;
