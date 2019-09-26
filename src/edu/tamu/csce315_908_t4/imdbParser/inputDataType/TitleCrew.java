@@ -5,6 +5,12 @@ public class TitleCrew {
     private String directors;
     private String writers;
 
+    public TitleCrew(String tconst, String directors, String writers){
+        this.tconst = tconst;
+        this.directors = directors;
+        this.writers = writers;
+    }
+
     public String getTconst(){
         return tconst;
     }

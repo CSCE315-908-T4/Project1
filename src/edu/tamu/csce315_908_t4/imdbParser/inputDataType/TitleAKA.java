@@ -11,7 +11,7 @@ public class TitleAKA{
     private boolean isOriginalTitle;
 
     public TitleAKA(String titleId, int ordering, String title, String region, String language, String types, String attributes, boolean isOriginalTitle){
-        this.titleId = titleId;
+        this.titleID = titleId;
         this.ordering = ordering;
         this.title = title;
         this.region = region;
@@ -22,7 +22,7 @@ public class TitleAKA{
     }
 
     public String getTitleId(){
-        return titleId;
+        return titleID;
     }
 
     public int getOrdering(){
