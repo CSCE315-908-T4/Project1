@@ -1,6 +1,6 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class TitleBasics{
+public class TitleBasic{
     private String tconst;
     private String titleType;
     private String primaryTitle;
