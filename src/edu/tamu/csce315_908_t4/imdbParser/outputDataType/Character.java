@@ -3,12 +3,12 @@ package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 public class Character {
     private String tconst;
     private String nconst;
-    private String charcter;
+    private String character;
 
-    public Character(String tconst, String nconst, String charcter){
+    public Character(String tconst, String nconst, String character){
         this.tconst = tconst;
         this.nconst = nconst;
-        this.charcter = charcter;
+        this.character = character;
     }
 
     public String getTconst(){
@@ -19,7 +19,7 @@ public class Character {
         return nconst;
     }
 
-    public String getCharcter(){
-        return charcter;
+    public String getCharacter(){
+        return character;
     }
 }
