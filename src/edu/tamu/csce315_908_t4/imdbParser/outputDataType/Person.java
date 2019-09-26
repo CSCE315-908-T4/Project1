@@ -1,12 +1,12 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class People{
+public class Person{
     private String nconst;
     private String primaryName;
     private short birthYear;
     private short deathYear;
 
-    public People(String nconst, String primaryName, short birthYear, short deathYear){
+    public Person(String nconst, String primaryName, short birthYear, short deathYear){
         this.nconst = nconst;
         this.primaryName = primaryName;
         this.birthYear = birthYear;

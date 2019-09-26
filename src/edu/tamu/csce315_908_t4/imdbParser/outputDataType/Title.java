@@ -1,6 +1,6 @@
-package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
+package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class TitleBasics {
+public class Title{
     private String tconst;
     private String titleType;
     private String primaryTitle;
@@ -9,9 +9,8 @@ public class TitleBasics {
     private short startYear;
     private short endYear;
     private int runtimeMinutes;
-    private String genres;
 
-    public TitleBasics(String tconst, String titleType, String primaryTitle, String originalTitle, boolean isAdult, short startYear, short endYear, int runtimeMinutes, String genres){
+    public Title(String tconst, String titleType, String primaryTitle, String originalTitle, boolean isAdult, short startYear, short endYear, int runtimeMinutes){
         this.tconst = tconst;
         this.titleType = titleType;
         this.primaryTitle = primaryTitle;
@@ -20,7 +19,6 @@ public class TitleBasics {
         this.startYear = startYear;
         this.endYear = endYear;
         this.runtimeMinutes = runtimeMinutes;
-        this.genres = genres;
     }
 
     public String getTconst(){
@@ -53,9 +51,5 @@ public class TitleBasics {
 
     public int getRuntimeMinutes(){
         return runtimeMinutes;
-    }
-
-    public String getGenres(){
-        return genres;
     }
 }

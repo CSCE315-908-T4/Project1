@@ -10,12 +10,12 @@ public class OutputDataBlock{
     private ArrayList<Crew> crews;
     private ArrayList<Episode> episodes;
     private ArrayList<KnownFor> knownFor;
-    private ArrayList<People> people;
+    private ArrayList<Person> people;
     private ArrayList<Principal> principals;
-    private ArrayList<Profession> profession;
-    private ArrayList<Rating> rating;
-    private ArrayList<TitleBasic> titleBasic;
-    private ArrayList<TitleGenre> titleGenre;
+    private ArrayList<Profession> professions;
+    private ArrayList<Rating> ratings;
+    private ArrayList<Title> titles;
+    private ArrayList<Genre> genres;
 
     public static void sendToFiles(OutputDataBlock outputDataBlock, ArrayList<String> filePaths){
 
@@ -29,15 +29,22 @@ public class OutputDataBlock{
         knownFor = new ArrayList<>();
         people = new ArrayList<>();
         principals = new ArrayList<>();
-        profession = new ArrayList<>();
-        rating = new ArrayList<>();
-        titleBasic = new ArrayList<>();
-        titleGenre = new ArrayList<>();
+        professions = new ArrayList<>();
+        ratings = new ArrayList<>();
+        titles = new ArrayList<>();
+        genres = new ArrayList<>();
 
         genAkas(inputDataBlock.getTitleAKAs());
         genCharacters(inputDataBlock.getTitlePrincipals());
         genCrews(inputDataBlock.getTitleCrews());
         genEpisodes(inputDataBlock.getTitleEpisodes());
+        genKnownFors(inputDataBlock.getNameBasics());
+        genPeople(inputDataBlock.getNameBasics());
+        genPrinciples(inputDataBlock.getTitlePrincipals());
+        genProfessions(inputDataBlock.getNameBasics());
+        genRatings(inputDataBlock.getTitleRatings());
+        genTitles(inputDataBlock.getTitleBasics());
+        genGenres(inputDataBlock.getTitleBasics());
     }
 
     public ArrayList<Aka> getAkas(){
@@ -60,7 +67,7 @@ public class OutputDataBlock{
         return knownFor;
     }
 
-    public ArrayList<People> getPeople(){
+    public ArrayList<Person> getPeople(){
         return people;
     }
 
@@ -68,20 +75,20 @@ public class OutputDataBlock{
         return principals;
     }
 
-    public ArrayList<Profession> getProfession(){
-        return profession;
+    public ArrayList<Profession> getProfessions(){
+        return professions;
     }
 
-    public ArrayList<Rating> getRating(){
-        return rating;
+    public ArrayList<Rating> getRatings(){
+        return ratings;
     }
 
-    public ArrayList<TitleBasic> getTitleBasic(){
-        return titleBasic;
+    public ArrayList<Title> getTitles(){
+        return titles;
     }
 
-    public ArrayList<TitleGenre> getTitleGenre(){
-        return titleGenre;
+    public ArrayList<Genre> getGenres(){
+        return genres;
     }
 
     private void genAkas(ArrayList<TitleAKA> titleAKAs){
@@ -149,6 +156,78 @@ public class OutputDataBlock{
                 knownFor.add(new KnownFor(
                         nameBasic.getNconst(),
                         knownForTitle
+                ));
+            }
+        }
+    }
+
+    private void genPeople(ArrayList<NameBasic> nameBasics){
+        for(NameBasic nameBasic : nameBasics){
+            people.add(new Person(
+                    nameBasic.getNconst(),
+                    nameBasic.getPrimaryName(),
+                    nameBasic.getBirthYear(),
+                    nameBasic.getDeathYear()
+            ));
+        }
+    }
+
+    private void genPrinciples(ArrayList<TitlePrincipal> titlePrincipals){
+        for(TitlePrincipal titlePrincipal : titlePrincipals){
+            principals.add(new Principal(
+                    titlePrincipal.getTconst(),
+                    titlePrincipal.getOrdering(),
+                    titlePrincipal.getNconst(),
+                    titlePrincipal.getCategory(),
+                    titlePrincipal.getJob()
+            ));
+        }
+    }
+
+    private void genProfessions(ArrayList<NameBasic> nameBasics){
+        for(NameBasic nameBasic : nameBasics){
+            String[] primaryProfessions = nameBasic.getPrimaryProfession().split(",");
+            for(String primaryProfession : primaryProfessions){
+                professions.add(new Profession(
+                        nameBasic.getNconst(),
+                        primaryProfession
+                ));
+            }
+        }
+    }
+
+    private void genRatings(ArrayList<TitleRating> titleRatings){
+        for(TitleRating titleRating : titleRatings){
+            ratings.add(new Rating(
+                    titleRating.getTconst(),
+                    titleRating.getAverageRating(),
+                    titleRating.getNumVotes()
+            ));
+        }
+    }
+
+    private void genTitles(ArrayList<TitleBasic> titleBasics){
+        for(TitleBasic titleBasic : titleBasics){
+            titles.add(new Title(
+                    titleBasic.getTconst(),
+                    titleBasic.getTitleType(),
+                    titleBasic.getPrimaryTitle(),
+                    titleBasic.getOriginalTitle(),
+                    titleBasic.isAdult(),
+                    titleBasic.getStartYear(),
+                    titleBasic.getEndYear(),
+                    titleBasic.getRuntimeMinutes()
+            ));
+        }
+    }
+
+    private void genGenres(ArrayList<TitleBasic> titleBasics){
+        for(TitleBasic titleBasic : titleBasics){
+            String[] titleGenres = titleBasic.getGenres().split(",");
+            for(String titleGenre : titleGenres){
+                genres.add(new Genre(
+                        titleBasic.getTconst(),
+                        titleGenre
                 ));
             }
         }

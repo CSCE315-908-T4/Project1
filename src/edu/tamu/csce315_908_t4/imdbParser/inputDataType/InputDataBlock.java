@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class InputDataBlock{
     private ArrayList<NameBasic> nameBasics;
     private ArrayList<TitleAKA> titleAKAs;
-    private ArrayList<TitleBasics> titleBasics;
+    private ArrayList<TitleBasic> titleBasics;
     private ArrayList<TitleCrew> titleCrews;
     private ArrayList<TitleEpisode> titleEpisodes;
     private ArrayList<TitlePrincipal> titlePrincipals;
-    private ArrayList<TitleRatings> titleRatings;
+    private ArrayList<TitleRating> titleRatings;
 
     public static InputDataBlock readFromFiles(ArrayList<String> filePaths){
         return null;
     }
 
-    public InputDataBlock(ArrayList<NameBasic> nameBasics, ArrayList<TitleAKA> titleAKAs, ArrayList<TitleBasics> titleBasics, ArrayList<TitleCrew> titleCrews, ArrayList<TitleEpisode> titleEpisodes, ArrayList<TitlePrincipal> titlePrincipals, ArrayList<TitleRatings> titleRatings){
+    public InputDataBlock(ArrayList<NameBasic> nameBasics, ArrayList<TitleAKA> titleAKAs, ArrayList<TitleBasic> titleBasics, ArrayList<TitleCrew> titleCrews, ArrayList<TitleEpisode> titleEpisodes, ArrayList<TitlePrincipal> titlePrincipals, ArrayList<TitleRating> titleRatings){
         this.nameBasics = nameBasics;
         this.titleAKAs = titleAKAs;
         this.titleBasics = titleBasics;
@@ -33,7 +33,7 @@ public class InputDataBlock{
         return nameBasics;
     }
 
-    public ArrayList<TitleBasics> getTitleBasics(){
+    public ArrayList<TitleBasic> getTitleBasics(){
         return titleBasics;
     }
 
@@ -49,7 +49,7 @@ public class InputDataBlock{
         return titlePrincipals;
     }
 
-    public ArrayList<TitleRatings> getTitleRatings(){
+    public ArrayList<TitleRating> getTitleRatings(){
         return titleRatings;
     }
 }

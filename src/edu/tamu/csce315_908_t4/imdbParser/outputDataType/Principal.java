@@ -6,15 +6,13 @@ public class Principal{
     private String nconst;
     private String category;
     private String job;
-    private String character;
 
-    public Principal(String tconst, int ordering, String nconst, String category, String job, String character){
+    public Principal(String tconst, int ordering, String nconst, String category, String job){
         this.tconst = tconst;
         this.ordering = ordering;
         this.nconst = nconst;
         this.category = category;
         this.job = job;
-        this.character = character;
     }
 
     public String getTconst(){
@@ -35,9 +33,5 @@ public class Principal{
 
     public String getJob(){
         return job;
-    }
-
-    public String getCharacter(){
-        return character;
     }
 }

@@ -1,10 +1,10 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class TitleGenre{
+public class Genre{
     private String tconst;
     private String genre;
 
-    public TitleGenre(String tconst, String genre){
+    public Genre(String tconst, String genre){
         this.tconst = tconst;
         this.genre = genre;
     }
