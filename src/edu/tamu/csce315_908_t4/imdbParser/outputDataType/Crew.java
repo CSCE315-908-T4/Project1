@@ -8,4 +8,10 @@ public class Crew {
     public enum Type {
         DIRECTOR, WRITER
     }
+
+    public Crew(String tconst, String nconst, Type type){
+        this.tconst = tconst;
+        this.nconst = nconst;
+        this.type = type;
+    }
 }

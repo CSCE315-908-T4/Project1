@@ -1,6 +1,6 @@
 package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
 
-public class TitleAKAs{
+public class TitleAKA{
     private String titleID;
     private int ordering;
     private String title;
@@ -10,7 +10,7 @@ public class TitleAKAs{
     private String attributes;
     private boolean isOriginalTitle;
 
-    public TitleAKAs(String titleId, int ordering, String title, String region, String language, String types, String attributes, boolean isOriginalTitle){
+    public TitleAKA(String titleId, int ordering, String title, String region, String language, String types, String attributes, boolean isOriginalTitle){
         this.titleId = titleId;
         this.ordering = ordering;
         this.title = title;

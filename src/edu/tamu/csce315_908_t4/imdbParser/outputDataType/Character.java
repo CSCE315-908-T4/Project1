@@ -4,4 +4,10 @@ public class Character {
     private String tconst;
     private String nconst;
     private String charcter;
+
+    public Character(String tconst, String nconst, String charcter){
+        this.tconst = tconst;
+        this.nconst = nconst;
+        this.charcter = charcter;
+    }
 }

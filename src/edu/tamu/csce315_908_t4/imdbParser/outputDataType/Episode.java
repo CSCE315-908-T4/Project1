@@ -1,12 +1,12 @@
-package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
+package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class TitleEpisode {
+public class Episode{
     private String tconst;
     private String parentTconst;
     private short seasonNumber;
     private int episodeNumber;
 
-    public TitleEpisode(String tconst, String parentTconst, short seasonNumber, int episodeNumber){
+    public Episode(String tconst, String parentTconst, short seasonNumber, int episodeNumber){
         this.tconst = tconst;
         this.parentTconst = parentTconst;
         this.seasonNumber = seasonNumber;
