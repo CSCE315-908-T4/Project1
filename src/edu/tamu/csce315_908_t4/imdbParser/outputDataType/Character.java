@@ -10,4 +10,16 @@ public class Character {
         this.nconst = nconst;
         this.charcter = charcter;
     }
+
+    public String getTconst(){
+        return tconst;
+    }
+
+    public String getNconst(){
+        return nconst;
+    }
+
+    public String getCharcter(){
+        return charcter;
+    }
 }
