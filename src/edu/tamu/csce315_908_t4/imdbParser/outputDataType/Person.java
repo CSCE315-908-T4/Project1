@@ -1,31 +1,16 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class Person{
-    private String nconst;
-    private String primaryName;
-    private short birthYear;
-    private short deathYear;
+@SuppressWarnings("WeakerAccess")
+public class Person implements IOutputTable{
+    public final String nconst;
+    public final String primaryName;
+    public final short birthYear;
+    public final short deathYear;
 
     public Person(String nconst, String primaryName, short birthYear, short deathYear){
         this.nconst = nconst;
         this.primaryName = primaryName;
         this.birthYear = birthYear;
         this.deathYear = deathYear;
-    }
-
-    public String getNconst(){
-        return nconst;
-    }
-
-    public String getPrimaryName(){
-        return primaryName;
-    }
-
-    public short getBirthYear(){
-        return birthYear;
-    }
-
-    public short getDeathYear(){
-        return deathYear;
     }
 }

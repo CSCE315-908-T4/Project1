@@ -1,15 +1,12 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
-public class Crew {
-    private String tconst;
-    private String nconst;
-    private Type type;
+@SuppressWarnings("WeakerAccess")
+public class Crew implements IOutputTable{
+    public final String tconst;
+    public final String nconst;
+    public final String type;
 
-    public enum Type {
-        DIRECTOR, WRITER
-    }
-
-    public Crew(String tconst, String nconst, Type type){
+    public Crew(String tconst, String nconst, String type){
         this.tconst = tconst;
         this.nconst = nconst;
         this.type = type;

@@ -3,22 +3,14 @@ package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 import edu.tamu.csce315_908_t4.imdbParser.inputDataType.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * All data to be output in object form.
  */
+@SuppressWarnings({"unchecked", "WeakerAccess"})
 public class OutputDataBlock{
-    private ArrayList<Aka> akas;
-    private ArrayList<Character> characters;
-    private ArrayList<Crew> crews;
-    private ArrayList<Episode> episodes;
-    private ArrayList<KnownFor> knownFor;
-    private ArrayList<Person> people;
-    private ArrayList<Principal> principals;
-    private ArrayList<Profession> professions;
-    private ArrayList<Rating> ratings;
-    private ArrayList<Title> titles;
-    private ArrayList<Genre> genres;
+    private HashMap<EOutputTable, ArrayList<? extends IOutputTable>> outputData;
 
     /**
      * Creates an {@link OutputDataBlock} form an {@link InputDataBlock}
@@ -26,17 +18,18 @@ public class OutputDataBlock{
      * @param inputDataBlock The input data used to create output data
      */
     public OutputDataBlock(InputDataBlock inputDataBlock){
-        akas = new ArrayList<>(inputDataBlock.getTitleAKAs().size());
-        characters = new ArrayList<>();
-        crews = new ArrayList<>();
-        episodes = new ArrayList<>();
-        knownFor = new ArrayList<>();
-        people = new ArrayList<>();
-        principals = new ArrayList<>();
-        professions = new ArrayList<>();
-        ratings = new ArrayList<>();
-        titles = new ArrayList<>();
-        genres = new ArrayList<>();
+        outputData = new HashMap<>(EOutputTable.values().length);
+        outputData.put(EOutputTable.AKA_TABLE, new ArrayList<Aka>(inputDataBlock.getTitleAKAs().size()));
+        outputData.put(EOutputTable.CHARACTER_TABLE, new ArrayList<Character>(inputDataBlock.getTitlePrincipals().size()));
+        outputData.put(EOutputTable.CREW_TABLE, new ArrayList<Crew>(inputDataBlock.getTitleCrews().size()));
+        outputData.put(EOutputTable.EPISODE_TABLE, new ArrayList<Episode>(inputDataBlock.getTitleEpisodes().size()));
+        outputData.put(EOutputTable.KNOWN_FOR_TABLE, new ArrayList<KnownFor>(inputDataBlock.getNameBasics().size()));
+        outputData.put(EOutputTable.PERSON_TABLE, new ArrayList<Person>(inputDataBlock.getNameBasics().size()));
+        outputData.put(EOutputTable.PRINCIPAL_TABLE, new ArrayList<Principal>(inputDataBlock.getTitlePrincipals().size()));
+        outputData.put(EOutputTable.PROFESSION_TABLE, new ArrayList<Profession>(inputDataBlock.getNameBasics().size()));
+        outputData.put(EOutputTable.RATING_TABLE, new ArrayList<Rating>(inputDataBlock.getTitleRatings().size()));
+        outputData.put(EOutputTable.TITLE_TABLE, new ArrayList<Title>(inputDataBlock.getTitleBasics().size()));
+        outputData.put(EOutputTable.GENRE_TABLE, new ArrayList<Genre>(inputDataBlock.getTitleBasics().size()));
 
         genAkas(inputDataBlock.getTitleAKAs());
         genCharacters(inputDataBlock.getTitlePrincipals());
@@ -52,98 +45,11 @@ public class OutputDataBlock{
     }
 
     /**
-     * Gets the AKA table data
-     * @return AKA table data in an {@link ArrayList}
-     */
-    public ArrayList<Aka> getAkas(){
-        return akas;
-    }
-
-    /**
-     * Gets the Character table data
-     * @return Character table data in an {@link ArrayList}
-     */
-    public ArrayList<Character> getCharacters(){
-        return characters;
-    }
-
-    /**
-     * Gets the Crew table data
-     * @return Crew table data in an {@link ArrayList}
-     */
-    public ArrayList<Crew> getCrews(){
-        return crews;
-    }
-
-    /**
-     * Gets the Episode table data
-     * @return Episode table data in an {@link ArrayList}
-     */
-    public ArrayList<Episode> getEpisodes(){
-        return episodes;
-    }
-
-    /**
-     * Gets the KnownFor table data
-     * @return KnownFor table data in an {@link ArrayList}
-     */
-    public ArrayList<KnownFor> getKnownFor(){
-        return knownFor;
-    }
-
-    /**
-     * Gets the Person table data
-     * @return Person table data in an {@link ArrayList}
-     */
-    public ArrayList<Person> getPeople(){
-        return people;
-    }
-
-    /**
-     * Gets the Principle table data
-     * @return Principle table data in an {@link ArrayList}
-     */
-    public ArrayList<Principal> getPrincipals(){
-        return principals;
-    }
-
-    /**
-     * Gets the Profession table data
-     * @return Profession table data in an {@link ArrayList}
-     */
-    public ArrayList<Profession> getProfessions(){
-        return professions;
-    }
-
-    /**
-     * Gets the Rating table data
-     * @return Rating table data in an {@link ArrayList}
-     */
-    public ArrayList<Rating> getRatings(){
-        return ratings;
-    }
-
-    /**
-     * Gets the Title table data
-     * @return Title table data in an {@link ArrayList}
-     */
-    public ArrayList<Title> getTitles(){
-        return titles;
-    }
-
-    /**
-     * Gets the Genre table data
-     * @return Genre table data in an {@link ArrayList}
-     */
-    public ArrayList<Genre> getGenres(){
-        return genres;
-    }
-
-    /**
      * Gens the AKA table data from TitleAKAs
      * @param titleAKAs TitleAKA table input
      */
     private void genAkas(ArrayList<TitleAKA> titleAKAs){
+        ArrayList<Aka> akas = (ArrayList<Aka>) outputData.get(EOutputTable.AKA_TABLE);
         for(TitleAKA titleAKA : titleAKAs){
             akas.add(new Aka(
                     titleAKA.getTitleId(),
@@ -156,11 +62,16 @@ public class OutputDataBlock{
         }
     }
 
+    public HashMap<EOutputTable, ArrayList<? extends IOutputTable>> getOutputData(){
+        return outputData;
+    }
+
     /**
      * Gens the Character table data from TitlePrincipals
      * @param titlePrincipals TitlePrincipals table input
      */
     private void genCharacters(ArrayList<TitlePrincipal> titlePrincipals){
+        ArrayList<Character> characters = (ArrayList<Character>) outputData.get(EOutputTable.CHARACTER_TABLE);
         for(TitlePrincipal titlePrincipal : titlePrincipals){
             String[] charactersArray = titlePrincipal.getCharacters().split(",");
             for(String individualCharacter : charactersArray){
@@ -178,6 +89,7 @@ public class OutputDataBlock{
      * @param titleCrews TitleCrew table input
      */
     private void genCrews(ArrayList<TitleCrew> titleCrews){
+        ArrayList<Crew> crews = (ArrayList<Crew>) outputData.get(EOutputTable.CREW_TABLE);
         for(TitleCrew titleCrew : titleCrews){
             String[] directors = titleCrew.getDirectors().split(",");
             String[] writers = titleCrew.getWriters().split(",");
@@ -185,14 +97,14 @@ public class OutputDataBlock{
                 crews.add(new Crew(
                         titleCrew.getTconst(),
                         director,
-                        Crew.Type.DIRECTOR
+                        "Director"
                 ));
             }
             for(String writer : writers){
                 crews.add(new Crew(
                         titleCrew.getTconst(),
                         writer,
-                        Crew.Type.WRITER
+                        "Writer"
                 ));
             }
         }
@@ -203,6 +115,7 @@ public class OutputDataBlock{
      * @param titleEpisodes TitleEpisode table input
      */
     private void genEpisodes(ArrayList<TitleEpisode> titleEpisodes){
+        ArrayList<Episode> episodes = (ArrayList<Episode>) outputData.get(EOutputTable.EPISODE_TABLE);
         for(TitleEpisode titleEpisode : titleEpisodes){
             episodes.add(new Episode(
                     titleEpisode.getTconst(),
@@ -218,6 +131,7 @@ public class OutputDataBlock{
      * @param nameBasics NameBasic table input
      */
     private void genKnownFors(ArrayList<NameBasic> nameBasics){
+        ArrayList<KnownFor> knownFor = (ArrayList<KnownFor>) outputData.get(EOutputTable.KNOWN_FOR_TABLE);
         for(NameBasic nameBasic : nameBasics){
             String[] knownForTitles = nameBasic.getKnownForTitles().split(",");
             for(String knownForTitle : knownForTitles){
@@ -234,6 +148,7 @@ public class OutputDataBlock{
      * @param nameBasics NameBasic table input
      */
     private void genPeople(ArrayList<NameBasic> nameBasics){
+        ArrayList<Person> people = (ArrayList<Person>) outputData.get(EOutputTable.PERSON_TABLE);
         for(NameBasic nameBasic : nameBasics){
             people.add(new Person(
                     nameBasic.getNconst(),
@@ -250,6 +165,7 @@ public class OutputDataBlock{
      * @param titlePrincipals TitlePrincipal table input
      */
     private void genPrincipals(ArrayList<TitlePrincipal> titlePrincipals){
+        ArrayList<Principal> principals = (ArrayList<Principal>) outputData.get(EOutputTable.PRINCIPAL_TABLE);
         for(TitlePrincipal titlePrincipal : titlePrincipals){
             principals.add(new Principal(
                     titlePrincipal.getTconst(),
@@ -266,6 +182,7 @@ public class OutputDataBlock{
      * @param nameBasics NameBasic table input
      */
     private void genProfessions(ArrayList<NameBasic> nameBasics){
+        ArrayList<Profession> professions = (ArrayList<Profession>) outputData.get(EOutputTable.PROFESSION_TABLE);
         for(NameBasic nameBasic : nameBasics){
             String[] primaryProfessions = nameBasic.getPrimaryProfession().split(",");
             for(String primaryProfession : primaryProfessions){
@@ -282,6 +199,7 @@ public class OutputDataBlock{
      * @param titleRatings TitleRating input
      */
     private void genRatings(ArrayList<TitleRating> titleRatings){
+        ArrayList<Rating> ratings = (ArrayList<Rating>) outputData.get(EOutputTable.RATING_TABLE);
         for(TitleRating titleRating : titleRatings){
             ratings.add(new Rating(
                     titleRating.getTconst(),
@@ -296,6 +214,7 @@ public class OutputDataBlock{
      * @param titleBasics TitleBasic table input
      */
     private void genTitles(ArrayList<TitleBasic> titleBasics){
+        ArrayList<Title> titles = (ArrayList<Title>) outputData.get(EOutputTable.TITLE_TABLE);
         for(TitleBasic titleBasic : titleBasics){
             titles.add(new Title(
                     titleBasic.getTconst(),
@@ -315,6 +234,7 @@ public class OutputDataBlock{
      * @param titleBasics TitleBasic table input
      */
     private void genGenres(ArrayList<TitleBasic> titleBasics){
+        ArrayList<Genre> genres = (ArrayList<Genre>) outputData.get(EOutputTable.GENRE_TABLE);
         for(TitleBasic titleBasic : titleBasics){
             String[] titleGenres = titleBasic.getGenres().split(",");
             for(String titleGenre : titleGenres){
