@@ -16,7 +16,7 @@ public class InputDataBlock{
     private ArrayList<TitleRating> titleRatings;
 
     public static ArrayList<File> CreateFileTypes(ArrayList<String> filePaths) {
-        ArrayList<File> importFiles = new ArrayList<File>;
+        ArrayList<File> importFiles = new ArrayList<File>();
         for (String s : filePaths) {
             importFiles.add(new File(s));
         }
@@ -40,14 +40,15 @@ public class InputDataBlock{
      */
     public static InputDataBlock readFromFiles(ArrayList<String> filePaths){
         ArrayList<File> files = CreateFileTypes(filePaths);
+        ArrayList<Class> list = new ArrayList();
         for (int i = 0; i < files.size(); i++) {
             switch (i) {
                 case 0:
-                    setNameBasics
+
             }
         }
 
-        return InputDataBlock(nameBasics, titleAKAs, titleBasics, titleCrews, titleEpisodes, titlePrincipals, titleRatings);
+        return InputDataBlock(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
     }
 
     public InputDataBlock(ArrayList<NameBasic> nameBasics, ArrayList<TitleAKA> titleAKAs, ArrayList<TitleBasic> titleBasics, ArrayList<TitleCrew> titleCrews, ArrayList<TitleEpisode> titleEpisodes, ArrayList<TitlePrincipal> titlePrincipals, ArrayList<TitleRating> titleRatings){

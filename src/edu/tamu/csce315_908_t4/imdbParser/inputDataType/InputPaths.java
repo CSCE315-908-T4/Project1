@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.HashMap;
 
 public class InputPaths {
-    private InputDataBlock
+    private InputDataBlock data;
     private HashMap<InputTable, File> files;
+
+    public InputPaths() {
+
+    }
 }
