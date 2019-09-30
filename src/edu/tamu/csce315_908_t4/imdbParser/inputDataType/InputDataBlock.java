@@ -26,6 +26,12 @@ public class InputDataBlock{
         this.titleRatings = titleRatings;
     }
 
+    /**
+     * Turn text files into File types
+     *
+     * @param filePaths
+     * @return {@link ArrayList<File>}
+     */
     private static ArrayList<File> CreateFileTypes(ArrayList<String> filePaths){
         ArrayList<File> importFiles = new ArrayList<>();
         for (String s : filePaths) {
@@ -35,8 +41,9 @@ public class InputDataBlock{
     }
 
     /**
+     * Inputs files in filePaths into our ArrayLists
      * @param filePaths
-     * @return
+     * @return InputDataBlock
      */
     public static InputDataBlock readFromFiles(ArrayList<String> filePaths){
         ArrayList<File> files = CreateFileTypes(filePaths);
@@ -48,7 +55,8 @@ public class InputDataBlock{
         ArrayList<TitlePrincipal> titlePrincipals = new ArrayList<>();
         ArrayList<TitleRating> titleRatings = new ArrayList<>();
         BufferedReader tsvReader;
-        try{
+        try {
+            // loop through each file and inserts into correct ArrayList
             for(int i = 0; i < files.size(); i++){
                 tsvReader = new BufferedReader(new FileReader(files.get(i)));
                 tsvReader.readLine(); // trash first line
