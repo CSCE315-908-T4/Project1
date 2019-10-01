@@ -41,11 +41,11 @@ WHERE "isAdult" = 0;
 
 SELECT Count("averageRating") FROM "titleRatings"
 Where "averageRating" < 2;
-/*Counting the number of Movies Margot robbie is in*/
-SELECT Count("tconst"), "primaryName"
-FROM "titlePrincipal", "nameBasics"
-INNER JOIN "nameBasics" ON "titlePrincipal.nconst" = "Person.nconst"
-WHERE "primaryName" = "Margot Robbie";
+/*Making a table of Margot Robbie and Leonardo DiCaprio's jobs in film*/
+SELECT  "primaryName", "primaryProfession"  
+FROM "nameBasics" 
+WHERE "primaryName" = 'Margot Robbie' OR "primaryName" = 'Leonardo DiCaprio';
+
 
 --Counting the number of excellent movies on IMDB
 SELECT Count("averageRating") FROM "titleRatings"
