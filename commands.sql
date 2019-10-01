@@ -57,10 +57,10 @@ WHERE "averageRating" = 10;
 
 --Counting Number of Distinct actresses
 SELECT Count(DISTINCT "nconst") FROM "Principal"
-Where "job" = "actress";
+Where "category" = "actress";
 --Counting number of distinct actors
 SELECT Count(DISTINCT "nconst") FROM "Principal"
-Where "job" = "actor";
+Where "category" = "actor";
 
 SELECT Count("averageRating") 
 From "Ratings" 
@@ -83,11 +83,11 @@ INNER JOIN "Rating" ON "Title.tconst" = "Rating.tconst"
 Where "Rating.averageRating" = 10 AND "Rating.numVotes" >10000;
 
 SELECT Count(DISTINCT "nconst") FROM "Principal"
-Where "job" = "director";
+Where "category" = "director";
 
 SELECT Count(DISTINCT "nconst") FROM "Principal"
-Where "job" = "writer";
+Where "category" = "writer";
 
 SELECT Count(DISTINCT "nconst") FROM "Principal"
-Where "job" = "cinematographer";
+Where "category" = "cinematographer";
 
