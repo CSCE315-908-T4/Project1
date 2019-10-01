@@ -3,10 +3,10 @@ package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
 public class TitleEpisode {
     private String tconst;
     private String parentTconst;
-    private short seasonNumber;
-    private int episodeNumber;
+    private Short seasonNumber;
+    private Integer episodeNumber;
 
-    public TitleEpisode(String tconst, String parentTconst, short seasonNumber, int episodeNumber){
+    public TitleEpisode(String tconst, String parentTconst, Short seasonNumber, Integer episodeNumber){
         this.tconst = tconst;
         this.parentTconst = parentTconst;
         this.seasonNumber = seasonNumber;
@@ -21,11 +21,11 @@ public class TitleEpisode {
         return parentTconst;
     }
 
-    public short getSeasonNumber(){
+    public Short getSeasonNumber(){
         return seasonNumber;
     }
 
-    public int getEpisodeNumber(){
+    public Integer getEpisodeNumber(){
         return episodeNumber;
     }
 }

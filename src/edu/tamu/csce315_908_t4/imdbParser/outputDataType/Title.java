@@ -6,12 +6,12 @@ public class Title implements IOutputTable{
     public final String titleType;
     public final String primaryTitle;
     public final String originalTitle;
-    public final boolean isAdult;
-    public final short startYear;
-    public final short endYear;
-    public final int runtimeMinutes;
+    public final Boolean isAdult;
+    public final Short startYear;
+    public final Short endYear;
+    public final Integer runtimeMinutes;
 
-    public Title(String tconst, String titleType, String primaryTitle, String originalTitle, boolean isAdult, short startYear, short endYear, int runtimeMinutes){
+    public Title(String tconst, String titleType, String primaryTitle, String originalTitle, Boolean isAdult, Short startYear, Short endYear, Integer runtimeMinutes){
         this.tconst = tconst;
         this.titleType = titleType;
         this.primaryTitle = primaryTitle;

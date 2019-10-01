@@ -19,7 +19,6 @@ public class OutputDataBlock{
      */
     public OutputDataBlock(InputDataBlock inputDataBlock){
         outputData = new HashMap<>(EOutputTable.values().length);
-        outputData.put(EOutputTable.AKA_TABLE, new ArrayList<Aka>(inputDataBlock.getTitleAKAs().size()));
         outputData.put(EOutputTable.CHARACTER_TABLE, new ArrayList<Character>(inputDataBlock.getTitlePrincipals().size()));
         outputData.put(EOutputTable.CREW_TABLE, new ArrayList<Crew>(inputDataBlock.getTitleCrews().size()));
         outputData.put(EOutputTable.EPISODE_TABLE, new ArrayList<Episode>(inputDataBlock.getTitleEpisodes().size()));
@@ -31,35 +30,28 @@ public class OutputDataBlock{
         outputData.put(EOutputTable.TITLE_TABLE, new ArrayList<Title>(inputDataBlock.getTitleBasics().size()));
         outputData.put(EOutputTable.GENRE_TABLE, new ArrayList<Genre>(inputDataBlock.getTitleBasics().size()));
 
-        genAkas(inputDataBlock.getTitleAKAs());
-        genCharacters(inputDataBlock.getTitlePrincipals());
+        System.out.println("Converting Ratings");
+        genRatings(inputDataBlock.getTitleRatings());
+        inputDataBlock.getTitleRatings().clear();
+        System.out.println("Converting Crews");
         genCrews(inputDataBlock.getTitleCrews());
+        inputDataBlock.getTitleCrews().clear();
+        System.out.println("Converting Episodes");
         genEpisodes(inputDataBlock.getTitleEpisodes());
+        inputDataBlock.getTitleEpisodes().clear();
+        System.out.println("Converting NameBasic");
         genKnownFors(inputDataBlock.getNameBasics());
         genPeople(inputDataBlock.getNameBasics());
-        genPrincipals(inputDataBlock.getTitlePrincipals());
         genProfessions(inputDataBlock.getNameBasics());
-        genRatings(inputDataBlock.getTitleRatings());
+        inputDataBlock.getNameBasics().clear();
+        System.out.println("Converting TitleBasic");
         genTitles(inputDataBlock.getTitleBasics());
         genGenres(inputDataBlock.getTitleBasics());
-    }
-
-    /**
-     * Gens the AKA table data from TitleAKAs
-     * @param titleAKAs TitleAKA table input
-     */
-    private void genAkas(ArrayList<TitleAKA> titleAKAs){
-        ArrayList<Aka> akas = (ArrayList<Aka>) outputData.get(EOutputTable.AKA_TABLE);
-        for(TitleAKA titleAKA : titleAKAs){
-            akas.add(new Aka(
-                    titleAKA.getTitleId(),
-                    titleAKA.getOrdering(),
-                    titleAKA.getTitle(),
-                    titleAKA.getRegion(),
-                    titleAKA.getLanguage(),
-                    titleAKA.isOriginalTitle()
-            ));
-        }
+        inputDataBlock.getTitleBasics().clear();
+        System.out.println("Converting Principals");
+        genCharacters(inputDataBlock.getTitlePrincipals());
+        genPrincipals(inputDataBlock.getTitlePrincipals());
+        inputDataBlock.getTitlePrincipals().clear();
     }
 
     public HashMap<EOutputTable, ArrayList<? extends IOutputTable>> getOutputData(){

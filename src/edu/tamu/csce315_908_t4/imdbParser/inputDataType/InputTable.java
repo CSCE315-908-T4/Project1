@@ -2,7 +2,6 @@ package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
 
 public enum InputTable {
     NAME_BASIC_TABLE("NameBasic", "nameBasic", 'n'),
-    TITLE_AKA_TABLE("AKA", "titleAKA", 'a'),
     TITLE_BASIC_TABLE("TitleBasic", "titleBasic", 'b'),
     TITLE_CREW_TABLE("Crew", "titleCrew", 'c'),
     TITLE_EPISODE_TABLE("Episode", "titleEpisode", 'e'),

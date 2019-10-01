@@ -2,7 +2,8 @@
   <configuration default="false" name="IMDBParser read" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="edu.tamu.csce315_908_t4.imdbParser.IMDBParser" />
     <module name="Project1" />
-    <option name="PROGRAM_PARAMETERS" value="-o titleOut\ -n tablesIn\nameBasic\data.tsv -a tablesIn\titleAKA\data.tsv -b tablesIn\titleBasic\data.tsv -c tablesIn\titleCrew\data.tsv -e tablesIn\titleEpisdoe\data.tsv -p tablesIn\titlePrincipal\data.tsv -r tablesIn\titleRating\data.tsv" />
+    <option name="PROGRAM_PARAMETERS" value="-o titleOut\ -n tablesIn\nameBasic\data.tsv -b tablesIn\titleBasic\data.tsv -c tablesIn\titleCrew\data.tsv -e tablesIn\titleEpisode\data.tsv -p tablesIn\titlePrincipal\data.tsv -r tablesIn\titleRating\data.tsv" />
+    <option name="VM_PARAMETERS" value="-Xmx30G" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

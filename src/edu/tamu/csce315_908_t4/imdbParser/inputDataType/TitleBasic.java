@@ -5,13 +5,13 @@ public class TitleBasic{
     private String titleType;
     private String primaryTitle;
     private String originalTitle;
-    private boolean isAdult;
-    private short startYear;
-    private short endYear;
-    private int runtimeMinutes;
+    private Boolean isAdult;
+    private Short startYear;
+    private Short endYear;
+    private Integer runtimeMinutes;
     private String genres;
 
-    public TitleBasic(String tconst, String titleType, String primaryTitle, String originalTitle, boolean isAdult, short startYear, short endYear, int runtimeMinutes, String genres){
+    public TitleBasic(String tconst, String titleType, String primaryTitle, String originalTitle, Boolean isAdult, Short startYear, Short endYear, Integer runtimeMinutes, String genres){
         this.tconst = tconst;
         this.titleType = titleType;
         this.primaryTitle = primaryTitle;
@@ -39,19 +39,19 @@ public class TitleBasic{
         return originalTitle;
     }
 
-    public boolean isAdult(){
+    public Boolean isAdult(){
         return isAdult;
     }
 
-    public short getStartYear(){
+    public Short getStartYear(){
         return startYear;
     }
 
-    public short getEndYear(){
+    public Short getEndYear(){
         return endYear;
     }
 
-    public int getRuntimeMinutes(){
+    public Integer getRuntimeMinutes(){
         return runtimeMinutes;
     }
 

@@ -1,7 +1,6 @@
 package edu.tamu.csce315_908_t4.imdbParser.outputDataType;
 
 public enum EOutputTable{
-    AKA_TABLE("AKA", Aka.class),
     CHARACTER_TABLE("Character", Character.class),
     CREW_TABLE("Crew", Crew.class),
     EPISODE_TABLE("Episode", Episode.class),

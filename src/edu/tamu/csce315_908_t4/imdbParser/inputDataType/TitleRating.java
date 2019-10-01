@@ -2,10 +2,10 @@ package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
 
 public class TitleRating{
     private String tconst;
-    private float averageRating;
-    private int numVotes;
+    private Float averageRating;
+    private Integer numVotes;
 
-    public TitleRating(String tconst, float averageRating, int numVotes){
+    public TitleRating(String tconst, Float averageRating, Integer numVotes){
         this.tconst = tconst;
         this.averageRating = averageRating;
         this.numVotes = numVotes;
@@ -15,11 +15,11 @@ public class TitleRating{
         return tconst;
     }
 
-    public float getAverageRating(){
+    public Float getAverageRating(){
         return averageRating;
     }
 
-    public int getNumVotes(){
+    public Integer getNumVotes(){
         return numVotes;
     }
 }

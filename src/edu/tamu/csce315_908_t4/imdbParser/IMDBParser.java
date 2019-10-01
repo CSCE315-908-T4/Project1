@@ -46,22 +46,9 @@ public class IMDBParser{
             }
         }
 
-        System.out.println("Reading data...");
-        long time = System.nanoTime();
-        InputDataBlock inputDataBlock = InputDataBlock.readFromFiles(inputPaths);
-        long diff = System.nanoTime() - time;
-        System.out.println("Read data in " + diff + " nanos");
-
-        System.out.println("Beginning conversion to output...");
-        time = System.nanoTime();
-        OutputDataBlock outputDataBlock = new OutputDataBlock(inputDataBlock);
-        diff = System.nanoTime() - time;
-        System.out.println("Converted in " + diff + " nanos");
-
         String outputPath = commandLine.getOptionValue('o');
         OutputPaths outputPaths = new OutputPaths(
-                outputDataBlock,
-                outputPath + "akaTable.json",
+                null,
                 outputPath + "characterTable.json",
                 outputPath + "crewTable.json",
                 outputPath + "episodeTable.json",
@@ -73,6 +60,19 @@ public class IMDBParser{
                 outputPath + "titleTable.json",
                 outputPath + "genreTable.json"
         );
+
+        System.out.println("Reading data...");
+        long time = System.nanoTime();
+        InputDataBlock inputDataBlock = InputDataBlock.readFromFiles(inputPaths);
+        long diff = System.nanoTime() - time;
+        System.out.println("Read data in " + diff + " nanos");
+
+        System.out.println("Beginning conversion to output...");
+        time = System.nanoTime();
+        OutputDataBlock outputDataBlock = new OutputDataBlock(inputDataBlock);
+        outputPaths.setData(outputDataBlock);
+        diff = System.nanoTime() - time;
+        System.out.println("Converted in " + diff + " nanos");
 
         System.out.println("Sending to files...");
         time = System.nanoTime();
