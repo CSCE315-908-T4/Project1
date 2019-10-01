@@ -6,6 +6,7 @@ CSCE 315
 Database setup example
 Purpose: Keeping usernames and password private.
 */
+@SuppressWarnings("WeakerAccess")
 public final class dbSetup{
     public static final String user = "Buzzec";
     public static final String pswd = "#E?Ez>wCg=x+-#sDn2xA*rq33";

@@ -1,7 +1,6 @@
 package edu.tamu.csce315_908_t4.sqlguiTest;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -14,23 +13,14 @@ CSCE 315
 public class jdbcpostgreSQL{
     public static void main(String[] args){
         //Building the connection
-        Connection conn = null;
-        try{
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://db-315.cse.tamu.edu/sales",
-                    dbSetup.user, dbSetup.pswd);
-        } catch(Exception e){
-            e.printStackTrace();
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }//end try catch
+        Connection conn = jdbcpostgreSQLGUI.genConnection();
         System.out.println("Opened database successfully");
 
         try{
             //create a statement object
             Statement stmt = conn.createStatement();
             //create an SQL statement
-            String sqlStatement = "SELECT cus_lname FROM customer";
+            String sqlStatement = "SELECT \"tconst\" FROM \"titleCrew\" LIMIT 10";
             //send statement to DBMS
             ResultSet result = stmt.executeQuery(sqlStatement);
 
