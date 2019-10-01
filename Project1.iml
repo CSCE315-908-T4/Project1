@@ -19,5 +19,6 @@
     </orderEntry>
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="commons-cli:commons-cli:1.4" level="project" />
+    <orderEntry type="library" name="org.postgresql:postgresql:42.2.8" level="project" />
   </component>
 </module>
