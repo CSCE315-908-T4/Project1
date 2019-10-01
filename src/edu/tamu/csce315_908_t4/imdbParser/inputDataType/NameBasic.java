@@ -3,12 +3,12 @@ package edu.tamu.csce315_908_t4.imdbParser.inputDataType;
 public class NameBasic{
     private String nconst;
     private String primaryName;
-    private short birthYear;
-    private short deathYear;
+    private Short birthYear;
+    private Short deathYear;
     private String primaryProfession;
     private String knownForTitles;
 
-    public NameBasic(String nconst, String primaryName, short birthYear, short deathYear, String primaryProfession, String knownForTitles){
+    public NameBasic(String nconst, String primaryName, Short birthYear, Short deathYear, String primaryProfession, String knownForTitles){
         this.nconst = nconst;
         this.primaryName = primaryName;
         this.birthYear = birthYear;
@@ -25,11 +25,11 @@ public class NameBasic{
         return primaryName;
     }
 
-    public short getBirthYear(){
+    public Short getBirthYear(){
         return birthYear;
     }
 
-    public short getDeathYear(){
+    public Short getDeathYear(){
         return deathYear;
     }
 

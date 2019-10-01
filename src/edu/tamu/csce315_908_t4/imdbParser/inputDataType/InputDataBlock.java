@@ -40,6 +40,13 @@ public class InputDataBlock{
         return importFiles;
     }
 
+    private static Short parseNullableShort(String in){
+        if(in.equals("\\N")){
+            return null;
+        }
+        return Short.parseShort(in);
+    }
+
     /**
      * Inputs files in filePaths into our ArrayLists
      * @param filePaths
@@ -47,13 +54,13 @@ public class InputDataBlock{
      */
     public static InputDataBlock readFromFiles(ArrayList<String> filePaths){
         ArrayList<File> files = CreateFileTypes(filePaths);
-        ArrayList<NameBasic> nameBasics = new ArrayList<>();
-        ArrayList<TitleAKA> titleAKAs = new ArrayList<>();
-        ArrayList<TitleBasic> titleBasics = new ArrayList<>();
-        ArrayList<TitleCrew> titleCrews = new ArrayList<>();
-        ArrayList<TitleEpisode> titleEpisodes = new ArrayList<>();
-        ArrayList<TitlePrincipal> titlePrincipals = new ArrayList<>();
-        ArrayList<TitleRating> titleRatings = new ArrayList<>();
+        ArrayList<NameBasic> nameBasics = new ArrayList<>(10000000);
+        ArrayList<TitleAKA> titleAKAs = new ArrayList<>(10000000);
+        ArrayList<TitleBasic> titleBasics = new ArrayList<>(10000000);
+        ArrayList<TitleCrew> titleCrews = new ArrayList<>(10000000);
+        ArrayList<TitleEpisode> titleEpisodes = new ArrayList<>(10000000);
+        ArrayList<TitlePrincipal> titlePrincipals = new ArrayList<>(10000000);
+        ArrayList<TitleRating> titleRatings = new ArrayList<>(10000000);
         BufferedReader tsvReader;
         try {
             // loop through each file and inserts into correct ArrayList
@@ -61,49 +68,93 @@ public class InputDataBlock{
                 tsvReader = new BufferedReader(new FileReader(files.get(i)));
                 tsvReader.readLine(); // trash first line
                 String dataLine = tsvReader.readLine();
+                System.out.println("Reading file num " + i);
+                long line_num = 0;
                 switch(i){
                     case 0:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
-                            nameBasics.add(new NameBasic(columns[0], columns[1], Short.parseShort(columns[2]), Short.parseShort(columns[3]), columns[4], columns[5]));
+                            nameBasics.add(new NameBasic(columns[0], columns[1], parseNullableShort(columns[2]), parseNullableShort(columns[3]), columns[4], columns[5]));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 1:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titleAKAs.add(new TitleAKA(columns[0], Integer.parseInt(columns[1]), columns[2], columns[3], columns[4], columns[5], columns[6], Boolean.parseBoolean(columns[7])));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 2:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titleBasics.add(new TitleBasic(columns[0], columns[1], columns[2], columns[3], Boolean.parseBoolean(columns[4]), Short.parseShort(columns[5]), Short.parseShort(columns[6]), Integer.parseInt(columns[7]), columns[8]));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 3:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titleCrews.add(new TitleCrew(columns[0], columns[1], columns[2]));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 4:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titleEpisodes.add(new TitleEpisode(columns[0], columns[1], Short.parseShort(columns[2]), Integer.parseInt(columns[3])));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 5:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titlePrincipals.add(new TitlePrincipal(columns[0], Integer.parseInt(columns[1]), columns[2], columns[3], columns[4], columns[5]));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                     case 6:
                         while(dataLine != null){
+                            if(line_num % 1000000 == 0){
+                                System.out.println("Line num: " + line_num);
+                            }
+                            line_num++;
                             String[] columns = dataLine.split("\\t");
                             titleRatings.add(new TitleRating(columns[0], Float.parseFloat(columns[1]), Integer.parseInt(columns[2])));
                             dataLine = tsvReader.readLine();
                         }
+                        System.out.println("Lines processed: " + line_num);
+                        break;
                 }
             }
         } catch(IOException e){
