@@ -1,3 +1,5 @@
+package edu.tamu.csce315_908_t4.sqlGUI;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 //import java.sql.DriverManager;
@@ -13,7 +15,7 @@ public class jdbcpostgreSQLGUI {
      Connection conn = null;
      try {
         Class.forName("org.postgresql.Driver");
-        conn = DriverManager.getConnection("jdbc:postgresql://db-315.cse.tamu.edu/lightfoot",
+        conn = DriverManager.getConnection("jdbc:postgresql://db-315.cse.tamu.edu/CSCE315-908-T4_MovieDB",
            my.user, my.pswd);
      } catch (Exception e) {
         e.printStackTrace();
@@ -21,12 +23,12 @@ public class jdbcpostgreSQLGUI {
         System.exit(0);
      }//end try catch
      JOptionPane.showMessageDialog(null,"Opened database successfully");
-     String cus_lname = "";
+     String tconst = "";
      try{
      //create a statement object
        Statement stmt = conn.createStatement();
        //create an SQL statement
-       String sqlStatement = "SELECT cus_lname FROM customer";
+       String sqlStatement = "SELECT tconst FROM titleBasics";
        //send statement to DBMS
        ResultSet result = stmt.executeQuery(sqlStatement);
 
@@ -35,12 +37,12 @@ public class jdbcpostgreSQLGUI {
        //System.out.println("______________________________________");
        while (result.next()) {
          //System.out.println(result.getString("cus_lname"));
-         cus_lname += result.getString("cus_lname")+"\n";
+         tconst += result.getString("const")+"\n";
        }
    } catch (Exception e){
      JOptionPane.showMessageDialog(null,"Error accessing Database.");
    }
-   JOptionPane.showMessageDialog(null,cus_lname);
+   JOptionPane.showMessageDialog(null,tconst);
     //closing the connection
     try {
       conn.close();

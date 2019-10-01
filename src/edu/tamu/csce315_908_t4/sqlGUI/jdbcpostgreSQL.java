@@ -1,3 +1,5 @@
+package edu.tamu.csce315_908_t4.sqlGUI;
+
 import java.sql.*;
 //import java.sql.DriverManager;
 /*
@@ -11,7 +13,7 @@ public class jdbcpostgreSQL {
      Connection conn = null;
      try {
         Class.forName("org.postgresql.Driver");
-        conn = DriverManager.getConnection("jdbc:postgresql://db-315.cse.tamu.edu/sales",
+        conn = DriverManager.getConnection("jdbc:postgresql://db-315.cse.tamu.edu/CSCE315-908-T4_MovieDB",
            dbSetup.user, dbSetup.pswd);
      } catch (Exception e) {
         e.printStackTrace();
@@ -24,7 +26,7 @@ public class jdbcpostgreSQL {
      //create a statement object
        Statement stmt = conn.createStatement();
        //create an SQL statement
-       String sqlStatement = "SELECT cus_lname FROM customer";
+       String sqlStatement = "SELECT tconst FROM 'titleBasics' LIMIT 10";
        //send statement to DBMS
        ResultSet result = stmt.executeQuery(sqlStatement);
 
@@ -32,7 +34,7 @@ public class jdbcpostgreSQL {
        System.out.println("Customer Last names from the Database.");
        System.out.println("______________________________________");
        while (result.next()) {
-         System.out.println(result.getString("cus_lname"));
+         System.out.println(result.getString("tconst"));
        }
    } catch (Exception e){
      System.out.println("Error accessing Database.");
