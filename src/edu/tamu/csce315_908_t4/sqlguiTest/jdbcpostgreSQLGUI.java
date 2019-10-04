@@ -22,7 +22,7 @@ public class jdbcpostgreSQLGUI{
             //create a statement object
             Statement stmt = conn.createStatement();
             //create an SQL statement
-            String sqlStatement = "SELECT \"tconst\" FROM \"titleCrew\" LIMIT 10";
+            String sqlStatement = "SELECT \"tconst\" FROM \"titleCrew\"";
             //send statement to DBMS
             ResultSet result = stmt.executeQuery(sqlStatement);
 
@@ -31,10 +31,11 @@ public class jdbcpostgreSQLGUI{
             //System.out.println("______________________________________");
             while(result.next()){
                 //System.out.println(result.getString("cus_lname"));
-                cus_lname.append(result.getString("cus_lname")).append("\n");
+                cus_lname.append(result.getString("tconst")).append("\n");
             }
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error accessing Database.");
+            e.printStackTrace();
         }
         JOptionPane.showMessageDialog(null, cus_lname.toString());
         //closing the connection
