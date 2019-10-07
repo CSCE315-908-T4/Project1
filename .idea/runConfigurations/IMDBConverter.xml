@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IMDBConverter" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="edu.tamu.csce315_908_t4.imdbConverter.IMDBConverter" />
+    <module name="Project1" />
+    <option name="VM_PARAMETERS" value="-Xmx16G" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="edu.tamu.csce315_908_t4.imdbConverter.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -4,7 +4,7 @@ public enum EOutputTable{
     CHARACTER_TABLE("Character"),
     CREW_TABLE("Crew"),
     EPISODE_TABLE("Episode"),
-    KNOWN_FOR_TABLE("KnownFor"),
+    KNOWN_FOR_TABLE("Known For"),
     PERSON_TABLE("Person"),
     PRINCIPAL_TABLE("Principal"),
     PROFESSION_TABLE("Profession"),
