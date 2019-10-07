@@ -36,21 +36,33 @@ public class Backend{
         }
     }
 
+    private String genSQL(String table, String column, IntArg intArg){
+        return "\"" + table + "\".\"" + column + "\" " + intArg.type.sql + " " + intArg.value;
+    }
+
+    private String genSQL(String table, String column, StringArg stringArg){
+        return "\"" + table + "\".\"" + column + "\" " + stringArg.type.sql + " \'" + stringArg.value.replace("\'", "\'\'") + "\'";
+    }
+
     private EpisodeResult episodeSearch(EpisodeArguments arguments){
         ArrayList<String> argumentSQL = new ArrayList<>();
         if(arguments.getNumVotes() != null){
-            IntArg numVotes = arguments.getNumVotes();
-            argumentSQL.add("\"Rating\".\"numVotes\" " + numVotes.type.sql + " " + numVotes.value);
+            argumentSQL.add(genSQL("Rating", "numVotes", arguments.getNumVotes()));
         }
         if(arguments.getTitle() != null){
-            StringArg title = arguments.getTitle();
-            argumentSQL.add("\"Title\".\"primaryTitle\" " + title.type.sql + " \'" + title.value.replace("\'", "\'\'") + "\'");
+            argumentSQL.add(genSQL("Title", "primaryTitle", arguments.getTitle()));
+        }
+        if(arguments.getType() != null){
+            argumentSQL.add(genSQL("Title", "titleType", arguments.getType()));
         }
         if(arguments.getAdult() != null){
             argumentSQL.add("\"Title\".\"isAdult\" = " + arguments.getAdult().toString());
         }
+        if(arguments.getStartYear() != null){
+            argumentSQL.add(genSQL("Title", "startYear", arguments.getStartYear()));
+        }
         if(arguments.getEndYear() != null){
-            arguments
+            argumentSQL.add(genSQL("Title", "endYear", arguments.getEndYear()));
         }
         if(arguments.getEpisodeNumber() != null){
             String sql = "\"Episode\".\"episodenumber\" ";
