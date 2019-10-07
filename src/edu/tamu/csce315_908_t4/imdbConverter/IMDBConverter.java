@@ -104,7 +104,7 @@ public class IMDBConverter{
                 new EOutputTable[]{EOutputTable.TITLE_TABLE, EOutputTable.GENRE_TABLE},
                 (resultSet, outputStatements) -> {
                     TitleBasic titleBasic = new TitleBasic(resultSet);
-//                    outputStatements.get(EOutputTable.TITLE_TABLE).addBatch("INSERT INTO \"Title\" (tconst, \"titleType\", \"primaryTitle\", \"originalTitle\", \"isAdult\", \"startYear\", \"endYear\", \"runtimeMinutes\") VALUES (" + toSQL(titleBasic.tconst) + ", " + toSQL(titleBasic.titleType) + ", " + toSQL(titleBasic.primaryTitle) + ", " + toSQL(titleBasic.originalTitle) + ", " + toSQL(titleBasic.isAdult) + ", " + toSQL(titleBasic.startYear) + ", " + toSQL(titleBasic.endYear) + ", " + toSQL(titleBasic.runtimeMinutes) + ")");
+                    outputStatements.get(EOutputTable.TITLE_TABLE).addBatch("INSERT INTO \"Title\" (tconst, \"titleType\", \"primaryTitle\", \"originalTitle\", \"isAdult\", \"startYear\", \"endYear\", \"runtimeMinutes\") VALUES (" + toSQL(titleBasic.tconst) + ", " + toSQL(titleBasic.titleType) + ", " + toSQL(titleBasic.primaryTitle) + ", " + toSQL(titleBasic.originalTitle) + ", " + toSQL(titleBasic.isAdult) + ", " + toSQL(titleBasic.startYear) + ", " + toSQL(titleBasic.endYear) + ", " + toSQL(titleBasic.runtimeMinutes) + ")");
                     if(titleBasic.genres != null){
                         String[] genres = titleBasic.genres.split(",");
                         for(String genre : genres){
