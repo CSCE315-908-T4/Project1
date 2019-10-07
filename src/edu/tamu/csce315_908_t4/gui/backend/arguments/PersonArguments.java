@@ -1,6 +1,6 @@
-package edu.tamu.csce315_908_t4.gui.backend;
+package edu.tamu.csce315_908_t4.gui.backend.arguments;
 
-public class PersonArguments{
+public class PersonArguments implements Arguments{
     private StringArg name;
     private IntArg birthYear;
     private IntArg deathYear;
