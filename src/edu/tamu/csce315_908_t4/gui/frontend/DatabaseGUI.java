@@ -21,6 +21,11 @@ public class DatabaseGUI extends JFrame implements ActionListener {
     private JTextField pathField;
     private JButton sendToFile;
     private ButtonGroup bg;
+    private int xPos = 50;
+    private int yPos = 120;
+    private int comboBoxWidth = 100;
+    private int searchBarWidth = 500;
+    private int height = 40;
 
     public DatabaseGUI() {
         // query side
@@ -102,7 +107,16 @@ public class DatabaseGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e == addButton.getAction()) {
-
+            JComboBox box1 = new JComboBox();
+            box1.setBounds(xPos, yPos, comboBoxWidth, height);
+            JTextField bar = new JTextField();
+            bar.setBounds(xPos + 110, yPos, searchBarWidth, height);
+            JComboBox box2 = new JComboBox();
+            box2.setBounds(xPos + 620, yPos, comboBoxWidth, height);
+            add(box1);
+            add(bar);
+            add(box2);
+            yPos += 60;
         }
     }
 }
