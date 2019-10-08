@@ -48,6 +48,7 @@ public class DatabaseGUI extends JFrame implements ActionListener {
         numResults = new JLabel("Number of Results: 00");
         numResults.setBounds(1000, 350, 200, 40);
         next10 = new JButton("Next 10");
+        next10.addActionListener(this);
         next10.setBounds(1150, 350, 100, 40);
         person = new JRadioButton("Person");
         person.addActionListener(this);
@@ -117,6 +118,24 @@ public class DatabaseGUI extends JFrame implements ActionListener {
             add(bar);
             add(box2);
             yPos += 60;
+        }
+        else if(e == searchButton.getAction()){
+
+        }
+        else if(e == next10.getAction()){
+
+        }
+        else if(e == person.getAction()){
+
+        }
+        else if(e == title.getAction()){
+
+        }
+        else if(e == episode.getAction()){
+
+        }
+        else if(e == sendToFile.getAction()){
+
         }
     }
 }
