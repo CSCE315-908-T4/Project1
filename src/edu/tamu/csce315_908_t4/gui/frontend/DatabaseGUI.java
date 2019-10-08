@@ -16,20 +16,20 @@ public class DatabaseGUI extends JFrame implements ActionListener {
     private JTextArea resultsBox;
     private JLabel numResults;
     private JButton next10;
-    private JRadioButton person;
-    private JRadioButton title;
-    private JRadioButton episode;
+    private JRadioButton person, title, episode;
     private JLabel pathLabel;
     private JTextField pathField;
     private JButton sendToFile;
+    private ButtonGroup bg;
 
     public DatabaseGUI() {
         // query side
         addButton = new JButton("Add");
         addButton.setBounds(50, 30, 100, 40);
+        addButton.addActionListener(this);
         searchButton = new JButton("Search");
         searchButton.setBounds(180, 30, 100, 40);
-        //search.addActionListener(new SearchListener());
+        searchButton.addActionListener(this);
         searchOption = new JComboBox();
         searchOption.setBounds(50, 100, 100, 40);
         searchBar = new JTextField(20);
@@ -60,6 +60,10 @@ public class DatabaseGUI extends JFrame implements ActionListener {
         sendToFile = new JButton("Send to File");
         sendToFile.addActionListener(this);
         sendToFile.setBounds(1500, 410, 100, 40);
+        bg = new ButtonGroup();
+        bg.add(person);
+        bg.add(title);
+        bg.add(episode);
 
         // query side
         add(addButton);
