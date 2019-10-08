@@ -1,7 +1,6 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DatabaseGUI extends JFrame {
     private JPanel query;
@@ -9,57 +8,77 @@ public class DatabaseGUI extends JFrame {
     private JLabel label;
     private JButton addButton;
     private JButton searchButton;
-    private JComboBox person;
+    private JComboBox searchOption;
     private JTextField searchBar;
     private JComboBox boolSelect;
     private JTextArea resultsBox;
-    private JButton printResults;
-    private JRadioButton radioButton;
+    private JLabel numResults;
+    private JButton next10;
+    private JRadioButton person;
+    private JRadioButton title;
+    private JRadioButton episode;
+    private JLabel pathLabel;
+    private JTextField pathField;
+    private JButton sendToFile;
 
     public DatabaseGUI() {
-        query = new JPanel(new FlowLayout());
-        results = new JPanel(new FlowLayout());
-        label = new JLabel("Enter query");
+        // query side
         addButton = new JButton("Add");
         addButton.setBounds(50, 30, 100, 40);
         searchButton = new JButton("Search");
         searchButton.setBounds(180, 30, 100, 40);
         //search.addActionListener(new SearchListener());
-        person = new JComboBox();
-        person.setBounds(50, 100, 100, 40);
+        searchOption = new JComboBox();
+        searchOption.setBounds(50, 100, 100, 40);
         searchBar = new JTextField(20);
         searchBar.setBounds(160, 100, 500, 40);
         boolSelect = new JComboBox();
         boolSelect.setBounds(670, 100, 100, 40);
 
-
+        // results side
         resultsBox = new JTextArea("Results");
         resultsBox.setBounds(1000, 30, 700, 300);
-        printResults = new JButton("Print Results");
+        numResults = new JLabel("Number of Results: 00");
+        numResults.setBounds(1000, 350, 200, 40);
+        next10 = new JButton("Next 10");
+        next10.setBounds(1150, 350, 100, 40);
+        person = new JRadioButton("Person");
+        person.setBounds(1000, 410, 100, 20);
+        title = new JRadioButton("Title");
+        title.setBounds(1000, 430, 100, 20);
+        episode = new JRadioButton("Episode");
+        episode.setBounds(1000, 450, 100, 20);
+        pathLabel = new JLabel("Path:");
+        pathLabel.setBounds(1350, 460, 100, 40);
+        pathField = new JTextField();
+        pathField.setBounds(1400, 460, 200, 40);
+        sendToFile = new JButton("Send to File");
+        sendToFile.setBounds(1500, 410, 100, 40);
 
-        // panel 1: query
-        add(label);
+        // query side
         add(addButton);
         add(searchButton);
-        add(person);
+        add(searchOption);
         add(searchBar);
         add(boolSelect);
 
-        // panel 2: results
+        // results side
         add(resultsBox);
-        add(printResults);
-
-        // add panels to JFrame
-        add(query);
-        add(results);
+        add(numResults);
+        add(next10);
+        add(person);
+        add(title);
+        add(episode);
+        add(pathLabel);
+        add(pathField);
+        add(sendToFile);
 
         // set window title
         setTitle("FILMPEDIA");
         // set window size
         setSize(1800, 800);
         // set layout
-        //setLayout(null);
-        //setLayout(new GridLayout(1, 2));
+        setLayout(null);
         // set action on close
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // display window
