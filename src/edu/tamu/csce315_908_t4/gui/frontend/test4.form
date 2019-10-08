@@ -26,7 +26,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Num Resutls: xx"/>
+          <text value="Num Resutls: 10"/>
         </properties>
       </component>
       <component id="8bbc4" class="javax.swing.JButton" binding="next10Button" default-binding="true">

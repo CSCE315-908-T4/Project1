@@ -26,26 +26,28 @@ public class DatabaseGUI extends JFrame {
         searchButton.setBounds(180, 30, 100, 40);
         //search.addActionListener(new SearchListener());
         person = new JComboBox();
+        person.setBounds(50, 100, 100, 40);
         searchBar = new JTextField(20);
+        searchBar.setBounds(160, 100, 500, 40);
         boolSelect = new JComboBox();
+        boolSelect.setBounds(670, 100, 100, 40);
 
 
         resultsBox = new JTextArea("Results");
-        resultsBox.setRows(20);
-        resultsBox.setColumns(80);
+        resultsBox.setBounds(1000, 30, 700, 300);
         printResults = new JButton("Print Results");
 
         // panel 1: query
-        query.add(label);
-        query.add(addButton);
-        query.add(searchButton, BorderLayout.WEST);
-        query.add(person);
-        query.add(searchBar);
-        query.add(boolSelect);
+        add(label);
+        add(addButton);
+        add(searchButton);
+        add(person);
+        add(searchBar);
+        add(boolSelect);
 
         // panel 2: results
-        results.add(resultsBox);
-        results.add(printResults);
+        add(resultsBox);
+        add(printResults);
 
         // add panels to JFrame
         add(query);
@@ -57,7 +59,7 @@ public class DatabaseGUI extends JFrame {
         setSize(1800, 800);
         // set layout
         //setLayout(null);
-        setLayout(new GridLayout(1, 2));
+        //setLayout(new GridLayout(1, 2));
         // set action on close
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // display window
