@@ -1,8 +1,10 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class DatabaseGUI extends JFrame {
+public class DatabaseGUI extends JFrame implements ActionListener {
     private JPanel query;
     private JPanel results;
     private JLabel label;
@@ -87,5 +89,10 @@ public class DatabaseGUI extends JFrame {
 
     public static void main(String[] args) {
         DatabaseGUI window = new DatabaseGUI();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
