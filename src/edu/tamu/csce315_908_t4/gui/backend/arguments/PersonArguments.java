@@ -1,18 +1,21 @@
 package edu.tamu.csce315_908_t4.gui.backend.arguments;
 
+import java.lang.reflect.Field;
+
 public class PersonArguments implements Arguments{
     private StringArg name;
     private IntArg birthYear;
     private IntArg deathYear;
     private StringArg profession;
-    private StringArg relatedTitle;
 
     public PersonArguments(){
-        name = null;
-        birthYear = null;
-        deathYear = null;
-        profession = null;
-        relatedTitle = null;
+        for(Field field : PersonArguments.class.getDeclaredFields()){
+            try{
+                field.set(this, null);
+            } catch(IllegalAccessException e){
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public StringArg getName(){
@@ -45,13 +48,5 @@ public class PersonArguments implements Arguments{
 
     public void setProfession(StringArg profession){
         this.profession = profession;
-    }
-
-    public StringArg getRelatedTitle(){
-        return relatedTitle;
-    }
-
-    public void setRelatedTitle(StringArg relatedTitle){
-        this.relatedTitle = relatedTitle;
     }
 }

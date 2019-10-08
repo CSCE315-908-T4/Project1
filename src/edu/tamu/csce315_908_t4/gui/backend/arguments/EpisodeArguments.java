@@ -10,13 +10,12 @@ public class EpisodeArguments implements Arguments{
     private IntArg startYear;
     private IntArg endYear;
     private IntArg runtime;
-    private StringArg genre;
     private IntArg seasonNumber;
     private IntArg episodeNumber;
     private StringArg seriesName;
 
     public EpisodeArguments(){
-        for(Field field : this.getClass().getDeclaredFields()){
+        for(Field field : EpisodeArguments.class.getDeclaredFields()){
             try{
                 field.set(this, null);
             } catch(IllegalAccessException e){
@@ -79,14 +78,6 @@ public class EpisodeArguments implements Arguments{
 
     public void setRuntime(IntArg runtime){
         this.runtime = runtime;
-    }
-
-    public StringArg getGenre(){
-        return genre;
-    }
-
-    public void setGenre(StringArg genre){
-        this.genre = genre;
     }
 
     public IntArg getSeasonNumber(){

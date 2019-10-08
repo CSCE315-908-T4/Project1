@@ -13,7 +13,7 @@ public class TitleArguments implements Arguments{
     private StringArg genre;
 
     public TitleArguments(){
-        for(Field field : this.getClass().getDeclaredFields()){
+        for(Field field : TitleArguments.class.getDeclaredFields()){
             try{
                 field.set(this, null);
             } catch(IllegalAccessException e){
