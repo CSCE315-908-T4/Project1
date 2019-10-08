@@ -45,16 +45,20 @@ public class DatabaseGUI extends JFrame implements ActionListener {
         next10 = new JButton("Next 10");
         next10.setBounds(1150, 350, 100, 40);
         person = new JRadioButton("Person");
+        person.addActionListener(this);
         person.setBounds(1000, 410, 100, 20);
         title = new JRadioButton("Title");
+        title.addActionListener(this);
         title.setBounds(1000, 430, 100, 20);
         episode = new JRadioButton("Episode");
+        episode.addActionListener(this);
         episode.setBounds(1000, 450, 100, 20);
         pathLabel = new JLabel("Path:");
         pathLabel.setBounds(1350, 460, 100, 40);
         pathField = new JTextField();
         pathField.setBounds(1400, 460, 200, 40);
         sendToFile = new JButton("Send to File");
+        sendToFile.addActionListener(this);
         sendToFile.setBounds(1500, 410, 100, 40);
 
         // query side
