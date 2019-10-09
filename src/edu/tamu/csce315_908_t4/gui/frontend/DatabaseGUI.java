@@ -22,7 +22,7 @@ public class DatabaseGUI extends JFrame implements ActionListener {
     private JButton sendToFile;
     private ButtonGroup bg;
     private int xPos = 50;
-    private int yPos = 120;
+    private int yPos = 160;
     private int comboBoxWidth = 100;
     private int searchBarWidth = 500;
     private int height = 40;
@@ -107,7 +107,7 @@ public class DatabaseGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e == addButton.getAction()) {
+        if (e.getSource() == addButton) {
             JComboBox box1 = new JComboBox();
             box1.setBounds(xPos, yPos, comboBoxWidth, height);
             JTextField bar = new JTextField();
@@ -118,24 +118,30 @@ public class DatabaseGUI extends JFrame implements ActionListener {
             add(bar);
             add(box2);
             yPos += 60;
-        }
-        else if(e == searchButton.getAction()){
+            revalidate();
+            repaint();
+        } else if (e.getSource() == searchButton) {
 
-        }
-        else if(e == next10.getAction()){
+            revalidate();
+            repaint();
+        } else if (e.getSource() == next10) {
 
-        }
-        else if(e == person.getAction()){
+            revalidate();
+            repaint();
+        } else if (e.getSource() == person) {
 
-        }
-        else if(e == title.getAction()){
+        } else if (e.getSource() == title) {
 
-        }
-        else if(e == episode.getAction()){
+            revalidate();
+            repaint();
+        } else if (e.getSource() == episode) {
 
-        }
-        else if(e == sendToFile.getAction()){
+            revalidate();
+            repaint();
+        } else if (e.getSource() == sendToFile) {
 
+            revalidate();
+            repaint();
         }
     }
 }
