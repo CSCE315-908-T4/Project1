@@ -10,13 +10,8 @@ public class StringArg{
     }
 
     public enum Type{
-        EQUALS("="),
-        NOT("!=");
-
-        public final String sql;
-
-        Type(String sql){
-            this.sql = sql;
-        }
+        EQUALS(),
+        LIKE(),
+        NOT()
     }
 }
