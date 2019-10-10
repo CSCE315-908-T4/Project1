@@ -50,7 +50,7 @@ public class DatabaseGUI extends JFrame implements ActionListener {
         next10 = new JButton("Next 10");
         next10.addActionListener(this);
         next10.setBounds(1150, 350, 100, 40);
-        person = new JRadioButton("Person");
+        person = new JRadioButton("Person", true);
         person.addActionListener(this);
         person.setBounds(1000, 410, 100, 20);
         title = new JRadioButton("Title");
@@ -130,6 +130,8 @@ public class DatabaseGUI extends JFrame implements ActionListener {
             repaint();
         } else if (e.getSource() == person) {
 
+            revalidate();
+            repaint();
         } else if (e.getSource() == title) {
 
             revalidate();
