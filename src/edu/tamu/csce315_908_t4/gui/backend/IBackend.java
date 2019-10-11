@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface IBackend{
     static IBackend getCurrent(){
-        return null;
+        return new Backend();
     }
 
     Pair<String, Integer> findClosestName(String in);
