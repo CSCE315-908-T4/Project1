@@ -1,6 +1,7 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -36,7 +37,8 @@ public class SeparationWindow extends Application implements IWindow {
             String actor1 = text1.getText();
             String actor2 = text2.getText();
             String exclude = text3.getText();
-
+            IBackend.SeparationArgs separationArgs = new IBackend.SeparationArgs(actor1, actor2);
+            separationArgs.addExcludedActor(new StringArg(exclude, StringArg.Type.LIKE));
         });
 
         GridPane root = new GridPane();
@@ -51,6 +53,11 @@ public class SeparationWindow extends Application implements IWindow {
         root.setPadding(new Insets(30, 10, 10, 30));
 
         return scene;
+    }
+
+    @Override
+    public String getTitle() {
+        return null;
     }
 
     @Override
