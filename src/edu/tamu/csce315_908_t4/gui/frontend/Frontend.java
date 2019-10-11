@@ -1,5 +1,6 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
+import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -8,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Frontend extends Application{
+public class Frontend extends Application implements IWindow {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 400;
     Stage primaryStage;
@@ -49,7 +50,16 @@ public class Frontend extends Application{
 
     private void backAction(ActionEvent actionEvent) {
         // closes the window
-        //Scene scene = (Scene)actionEvent.getScene();
+        primaryStage.setScene(getScene(null));
+    }
 
+    @Override
+    public Scene getScene(IBackend backend) {
+        return selectScene;
+    }
+
+    @Override
+    public String getTitle() {
+        return "Select";
     }
 }
