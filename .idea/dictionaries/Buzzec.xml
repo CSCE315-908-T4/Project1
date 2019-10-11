@@ -2,10 +2,13 @@
   <dictionary name="Buzzec">
     <words>
       <w>akas</w>
+      <w>consts</w>
       <w>fors</w>
       <w>nanos</w>
       <w>nconst</w>
+      <w>nconsts</w>
       <w>tconst</w>
+      <w>tconsts</w>
     </words>
   </dictionary>
 </component>
