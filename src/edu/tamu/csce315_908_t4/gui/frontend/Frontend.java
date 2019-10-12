@@ -3,63 +3,52 @@ package edu.tamu.csce315_908_t4.gui.frontend;
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Frontend extends Application implements IWindow {
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 400;
-    Stage primaryStage;
-    Scene selectScene;
-    GridPane gridPane;
-    Button degreesButton;
-    Button listButton;
-    Button choiceButton;
-    Button suggestionButton;
+public class Frontend extends Application{
+    private IBackend backend;
+
+    private Stage primaryStage;
+    private SelectWindow selectWindow;
+    private SeparationWindow separationWindow;
+    private RecommendationWindow recommendationWindow;
+
 
     public static void main(String[] args){
         Application.launch(args);
     }
 
+    public Frontend(){
+        backend = IBackend.getCurrent();
+
+        primaryStage = null;
+        selectWindow = new SelectWindow(this);
+        separationWindow = new SeparationWindow();
+        recommendationWindow = new RecommendationWindow(this);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Select");
         this.primaryStage = primaryStage;
-        degreesButton = new Button("Degrees of Actors");
-        listButton = new Button("Shortest List");
-        choiceButton = new Button("Team Choice");
-        suggestionButton = new Button("Suggest a Movie");
 
-        gridPane = new GridPane();
-        gridPane.add(degreesButton, 0, 0);
-        gridPane.add(listButton, 0, 1);
-        gridPane.add(choiceButton, 1, 0);
-        gridPane.add(suggestionButton, 1, 1);
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setVgap(10);
-        gridPane.setHgap(10);
-
-        selectScene = new Scene(gridPane, WIDTH, HEIGHT);
-        primaryStage.setScene(selectScene);
-
+        changeScene(selectWindow);
         primaryStage.show();
     }
 
-    private void backAction(ActionEvent actionEvent) {
-        // closes the window
-        primaryStage.setScene(getScene(null));
+    private void changeScene(IWindow window){
+        primaryStage.setScene(window.getScene(backend));
+        primaryStage.setTitle(window.getTitle());
     }
 
-    @Override
-    public Scene getScene(IBackend backend) {
-        return selectScene;
+    public void backAction(ActionEvent actionEvent){
+        changeScene(selectWindow);
     }
 
-    @Override
-    public String getTitle() {
-        return "Select";
+    public void separationAction(ActionEvent actionEvent){
+        changeScene(separationWindow);
+    }
+
+    public void recommendationAction(ActionEvent actionEvent){
+        changeScene(recommendationWindow);
     }
 }

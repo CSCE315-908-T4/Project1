@@ -1,4 +1,4 @@
-package edu.tamu.csce315_908_t4.database;
+package edu.tamu.csce315_908_t4.gui.backend;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

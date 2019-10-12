@@ -1,6 +1,6 @@
 package edu.tamu.csce315_908_t4.imdbConverter;
 
-import edu.tamu.csce315_908_t4.database.Database;
+import edu.tamu.csce315_908_t4.gui.backend.Database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

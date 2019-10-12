@@ -1,6 +1,5 @@
 package edu.tamu.csce315_908_t4.gui.backend;
 
-import edu.tamu.csce315_908_t4.database.Database;
 import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
 import javafx.util.Pair;
 import org.jetbrains.annotations.NotNull;
