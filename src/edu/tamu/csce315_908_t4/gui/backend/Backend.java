@@ -1,6 +1,7 @@
 package edu.tamu.csce315_908_t4.gui.backend;
 
 import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
+import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import javafx.util.Pair;
 
 import java.sql.Connection;
@@ -102,6 +103,20 @@ public class Backend implements IBackend{
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<RecommendationResult> getRecommendations(RecommendationArgs args)
+    {
+        try{
+            String actorNconst = getNconst(findClosestName(args.actor).getKey());
+
+
+
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
     }
 
     private String getNconst(String name) throws SQLException{

@@ -1,6 +1,7 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 
+import edu.tamu.csce315_908_t4.gui.backend.Backend;
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Person;
@@ -37,7 +38,7 @@ public class RecommendationWindow implements IWindow {
                 int Year = Integer.parseInt(year.getText());
                 IBackend.RecommendationArgs recommendationArgs= new IBackend.RecommendationArgs(actor, Genre, Year);
                 //do search
-                ArrayList<RecommendationResult> results = backend.getRecommendations(recommendationArgs);
+                ArrayList<RecommendationResult> results = Backend.getRecommendations(recommendationArgs);
                 //populate table and show scene
                 VBox vbox = new VBox(back, table);
                 scene = new Scene(vbox, 150, 200);
