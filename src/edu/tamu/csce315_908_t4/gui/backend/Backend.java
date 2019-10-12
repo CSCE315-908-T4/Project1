@@ -2,7 +2,6 @@ package edu.tamu.csce315_908_t4.gui.backend;
 
 import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
 import javafx.util.Pair;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ public class Backend implements IBackend{
         conn = Database.getConnection();
     }
 
-    private static String genSQL(@NotNull String string){
+    private static String genSQL(String string){
         return "\'" + string.replace("\'", "\'\'") + "\'";
     }
 

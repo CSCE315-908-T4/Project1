@@ -24,7 +24,7 @@ public class Frontend extends Application{
         primaryStage = null;
         selectWindow = new SelectWindow(this);
         separationWindow = new SeparationWindow();
-        recommendationWindow = new RecommendationWindow(this);
+        recommendationWindow = new RecommendationWindow();
     }
 
     @Override
