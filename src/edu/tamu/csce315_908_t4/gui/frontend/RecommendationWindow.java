@@ -53,9 +53,7 @@ public class RecommendationWindow implements IWindow {
             Scene scene1 = new Scene(vbox, 150, 200);
             primaryStage.setScene(scene1);
             primaryStage.show();
-
-
-        })
+        });
 
     }
 
