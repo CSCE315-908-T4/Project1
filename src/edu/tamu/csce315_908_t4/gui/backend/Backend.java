@@ -48,7 +48,7 @@ public class Backend implements IBackend{
 
             Queue<Pair<String, Integer>> queue = new LinkedList<>();
 
-            //Stores nconst's parent data in the form <child, <parentNconst, linkTconst
+            //Stores nconst's parent data in the form <child, <parentNconst, linkTconst>>
             HashMap<String, Link> nconstMap = new HashMap<>();
             boolean found = false;
             boolean depthReached = false;
@@ -61,16 +61,15 @@ public class Backend implements IBackend{
                     depthReached = true;
                     break;
                 }
-                ArrayList<String> moviesTconsts = getAllTconsts(currentNconst);
-                for(String tconst : moviesTconsts){
-                    ArrayList<String> nconsts = getAllNconsts(tconst);
-                    for(String nconst : nconsts){
-                        nconstMap.put(nconst, new Link(currentNconst, tconst));
-                        if(nconst.equals(targetNconst)){
-                            found = true;
-                            break;
-                        }
-                        queue.add(new Pair<>(nconst, depth + 1));
+                ArrayList<Pair<String, String>> nconsts = getRelatedNconsts(currentNconst);
+                for(Pair<String, String> nconst : nconsts){
+                    if(nconst.getKey().equals(targetNconst)){
+                        found = true;
+                        break;
+                    }
+                    if(!nconstMap.containsKey(nconst.getKey())){
+                        queue.add(new Pair<>(nconst.getKey(), depth + 1));
+                        nconstMap.put(nconst.getKey(), new Link(currentNconst, nconst.getValue()));
                     }
                 }
             }
@@ -86,15 +85,18 @@ public class Backend implements IBackend{
 
             ArrayList<CharacterResult> out = new ArrayList<>();
             String currentNconst = targetNconst;
-            while(currentNconst != initialNconst){
+            String prevName = getName(initialNconst);
+            while(!currentNconst.equals(initialNconst)){
                 Link link = nconstMap.get(currentNconst);
-                out.add(new CharacterResult(
-                        getName(currentNconst),
-                        getCharacterName(currentNconst, link.linkTconst),
+                String name = getName(currentNconst);
+                out.add(0, new CharacterResult(
+                        name,
+                        prevName,
                         getTitle(link.linkTconst),
                         getMovieYear(link.linkTconst)
                 ));
                 currentNconst = link.parentNconst;
+                prevName = name;
             }
             return out;
         } catch(SQLException e){
@@ -147,20 +149,15 @@ public class Backend implements IBackend{
         return resultSet.getInt("startYear");
     }
 
-    private ArrayList<String> getAllTconsts(String nconst) throws SQLException{
-        ResultSet resultSet = conn.createStatement().executeQuery("SELECT \"Principal\".tconst FROM \"Principal\" WHERE nconst = " + genSQL(nconst) + " AND (category = 'actor' OR category = 'actress' OR category = 'self')");
-        ArrayList<String> out = new ArrayList<>(resultSet.getFetchSize());
+    private ArrayList<Pair<String, String>> getRelatedNconsts(String nconst) throws SQLException{
+        ResultSet resultSet = conn.createStatement().executeQuery(
+                "SELECT DISTINCT \"Principal\".nconst AS nconst FROM (\n" +
+                        "SELECT DISTINCT \"Principal\".tconst AS tconst FROM \"Principal\" WHERE \"Principal\".nconst = " + genSQL(nconst) + "\n" +
+                        ") AS \"PrincipalSub\" INNER JOIN \"Principal\" ON \"PrincipalSub\".tconst = \"Principal\".tconst"
+        );
+        ArrayList<Pair<String, String>> out = new ArrayList<>(resultSet.getFetchSize());
         while(resultSet.next()){
-            out.add(resultSet.getString("tconst"));
-        }
-        return out;
-    }
-
-    private ArrayList<String> getAllNconsts(String tconst) throws SQLException{
-        ResultSet resultSet = conn.createStatement().executeQuery("SELECT \"Principal\".nconst FROM \"Principal\" WHERE tconst = " + genSQL(tconst) + " AND (category = 'actor' OR category = 'actress' OR category = 'self')");
-        ArrayList<String> out = new ArrayList<>(resultSet.getFetchSize());
-        while(resultSet.next()){
-            out.add(resultSet.getString("nconst"));
+            out.add(new Pair<>(resultSet.getString("nconst"), resultSet.getString("tconst")));
         }
         return out;
     }
