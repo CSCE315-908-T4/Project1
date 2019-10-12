@@ -1,9 +1,8 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
-package com.jenkov.javafx.layouts;
 
-
-
+import edu.tamu.csce315_908_t4.gui.backend.IBackend;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
 import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Person;
 import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Title;
 import javafx.event.ActionEvent;
@@ -20,18 +19,25 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class RecommendationWindow implements IWindow {
-    @Override
-    public void Start(Stage primaryStage)
-    {
-        primaryStage.setTitle("FILMPEDIA recommendations");
+        private Scene scene;
 
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
+    public Scene getScene(IBackend backend) {
         TextField name = new TextField();
         TextField year = new TextField();
         TextField genre = new TextField();
         Button back = new Button("Back");
         Button search = new Button("Generate Recommendations");
-        GridPane page = new GridPane();
+
         TableView table = new TableView();
+        search.setOnAction(event -> {
+            VBox vbox = new VBox(back, table);
+            scene = new Scene(vbox, 150, 200);
+        });
+        GridPane page = new GridPane();
         TableColumn<String, Person> nameColumn = new TableColumn<>("Actor Name");
         TableColumn<String, Title> yearColumn = new TableColumn<>("Year");
         TableColumn<String, Title> titleColumn = new TableColumn<>("Title");
@@ -45,19 +51,18 @@ public class RecommendationWindow implements IWindow {
         page.add(search, 9,9,1,1);
         page.setHgap(10);
         page.setVgap(10);
-        Scene scene = new Scene(page, 300,400);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        search.setOnAction(event -> {
-            VBox vbox = new VBox(back, table);
-            Scene scene1 = new Scene(vbox, 150, 200);
-            primaryStage.setScene(scene1);
-            primaryStage.show();
-        });
-
+        scene = new Scene(page, 300,400);
+        return scene;
     }
 
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(getScene(IBackend.getCurrent()));
+        primaryStage.setTitle("FILMPEDIA Recommendations");
+        primaryStage.show();
+    }
 
-
-
+    @Override
+    public String getTitle() {
+        return null;
+    }
 }
