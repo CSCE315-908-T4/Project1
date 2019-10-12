@@ -34,4 +34,9 @@ public interface IBackend{
             excludedActors.add(actor);
         }
     }
+
+    static void main(String[] args){
+        IBackend backend = IBackend.getCurrent();
+        System.out.println(backend.findClosestName("John Birkin"));
+    }
 }
