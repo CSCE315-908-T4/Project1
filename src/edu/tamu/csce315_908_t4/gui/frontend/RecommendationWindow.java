@@ -2,24 +2,20 @@ package edu.tamu.csce315_908_t4.gui.frontend;
 
 
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
-import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
 import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Person;
 import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Title;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RecommendationWindow implements IWindow {
-        private Scene scene;
+    private Scene scene;
 
     public static void main(String[] args) {
         Application.launch(args);
