@@ -36,6 +36,7 @@ public interface IBackend{
         }
     }
 
+
     class RecommendationArgs{
         public final String actor;
         public final String genre;
@@ -50,6 +51,8 @@ public interface IBackend{
 
     }
 
+
+    // for testing only
     static void main(String[] args){
         IBackend backend = IBackend.getCurrent();
         System.out.println(backend.findClosestName("John Birkin"));

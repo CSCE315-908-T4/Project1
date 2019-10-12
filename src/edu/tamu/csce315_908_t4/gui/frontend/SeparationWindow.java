@@ -2,6 +2,7 @@ package edu.tamu.csce315_908_t4.gui.frontend;
 
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
+import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,24 +13,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class SeparationWindow extends Application implements IWindow {
     private Scene scene;
+    private GridPane root;
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
-
-    @Override
-    public Scene getScene(IBackend backend) {
+    public SeparationWindow(Frontend frontend, IBackend backend) {
         Label label1 = new Label("Actor 1");
         Label label2 = new Label("Actor 2");
         Label label3 = new Label("Exclude");
         TextField text1 = new TextField();
         TextField text2 = new TextField();
         TextField text3 = new TextField();
-        TextArea results = new TextArea();
         Button backButton = new Button("Back");
-        //backButton.setOnAction(this::backAction);
+        backButton.setOnAction(frontend::backAction);
         Button searchButton = new Button("Search");
         //searchButton.setDefaultButton(true);
         searchButton.setOnAction(actionEvent -> {
@@ -39,30 +37,48 @@ public class SeparationWindow extends Application implements IWindow {
             String exclude = text3.getText();
             IBackend.SeparationArgs separationArgs = new IBackend.SeparationArgs(actor1, actor2);
             separationArgs.addExcludedActor(new StringArg(exclude, StringArg.Type.LIKE));
+            ArrayList<CharacterResult> results = backend.getSeparation(separationArgs);
+            TextArea printResults = new TextArea();
+            printResults.setText(turnToString(results));
+            root.add(printResults, 0, 2, 4, 8);
         });
 
-        GridPane root = new GridPane();
         scene = new Scene(root, 1000, 800);
         root.setHgap(10);
         root.setVgap(10);
         root.addRow(0, label1, label2, label3);
         root.addRow(1, text1, text2, text3);
-        root.add(results, 0, 2, 4, 8);
         root.add(backButton, 0, 10, 1, 1);
         root.add(searchButton, 3, 10, 1, 1);
         root.setPadding(new Insets(30, 10, 10, 30));
+    }
 
+    // for testing only
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
+    @Override
+    public Scene getScene() {
         return scene;
     }
 
     @Override
     public String getTitle() {
-        return null;
+        return "Degrees of Actor Separation";
     }
 
+    public String turnToString(ArrayList<CharacterResult> results) {
+
+        String line = "temp";
+
+        return line;
+    }
+
+    // testing only
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(getScene(IBackend.getCurrent()));
+        primaryStage.setScene(getScene());
         primaryStage.setTitle("Find Degrees of Separation Between Two Actors");
         primaryStage.show();
     }
