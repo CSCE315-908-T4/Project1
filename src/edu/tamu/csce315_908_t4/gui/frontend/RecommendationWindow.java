@@ -38,11 +38,11 @@ public class RecommendationWindow implements IWindow {
         table.getColumns().add(titleColumn);
         table.getColumns().add(yearColumn);
         table.getColumns().add(nameColumn);
-        page.getChildren().add(name, 0,0,2,1 );
-        page.getChildren().add(year, 1,0,2,1);
-        page.getChildren().add(genre, 2,0,2,1);
-        page.getChildren().add(back, 0, 9, 1, 1);
-        page.getChildren().add(search, 9,9,1,1);
+        page.add(name, 0,0,2,1 );
+        page.add(year, 1,0,2,1);
+        page.add(genre, 2,0,2,1);
+        page.add(back, 0, 9, 1, 1);
+        page.add(search, 9,9,1,1);
         page.setHgap(10);
         page.setVgap(10);
         Scene scene = new Scene(page, 300,400);
