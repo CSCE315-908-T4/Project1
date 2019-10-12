@@ -1,6 +1,5 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
-import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,7 +33,7 @@ public class SelectWindow implements IWindow{
     }
 
     @Override
-    public Scene getScene(IBackend backend){
+    public Scene getScene(){
         return scene;
     }
 

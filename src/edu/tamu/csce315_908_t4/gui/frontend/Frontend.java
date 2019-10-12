@@ -36,7 +36,7 @@ public class Frontend extends Application{
     }
 
     private void changeScene(IWindow window){
-        primaryStage.setScene(window.getScene(backend));
+        primaryStage.setScene(window.getScene());
         primaryStage.setTitle(window.getTitle());
     }
 
