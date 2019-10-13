@@ -45,7 +45,7 @@ public class RecommendationWindow implements IWindow {
                     table.getItems().add(new TableElements(results.get(i).movieTitle, results.get(i).year,results.get(i).actorName));
                 }
                 //populate table and show scene
-                VBox vbox = new VBox(back, table);
+                VBox vbox = new VBox(table, back);
                 scene = new Scene(vbox, 300, 400);
             });
             page = new GridPane();
