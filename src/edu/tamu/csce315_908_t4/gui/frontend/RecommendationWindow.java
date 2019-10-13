@@ -1,11 +1,9 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 
-import edu.tamu.csce315_908_t4.gui.backend.Backend;
+
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
-import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Person;
-import edu.tamu.csce315_908_t4.imdbParser.outputDataType.Title;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
