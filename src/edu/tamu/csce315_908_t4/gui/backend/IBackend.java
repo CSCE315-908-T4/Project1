@@ -2,6 +2,7 @@ package edu.tamu.csce315_908_t4.gui.backend;
 
 import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
 import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
+import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import javafx.util.Pair;
 
 import java.lang.reflect.Array;
@@ -15,6 +16,8 @@ public interface IBackend{
     Pair<String, Integer> findClosestName(String in);
 
     ArrayList<CharacterResult> getSeparation(SeparationArgs args);
+
+    ArrayList<RecommendationResult> getRecommendations(RecommendationArgs recommendationArgs);
 
     class SeparationArgs{
         public final String initialActor;

@@ -110,12 +110,13 @@ public class Backend implements IBackend{
         try{
             String actorNconst = getNconst(findClosestName(args.actor).getKey());
 
-
-
+            ArrayList<RecommendationResult> out = null;
+            return out;
         }
         catch(SQLException e){
             throw new RuntimeException(e);
         }
+
 
     }
 
