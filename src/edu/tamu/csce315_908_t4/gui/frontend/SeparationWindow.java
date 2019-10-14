@@ -32,7 +32,7 @@ public class SeparationWindow extends Application implements IWindow {
         Button backButton = new Button("Back");
         backButton.setOnAction(frontend::backAction);
         Button searchButton = new Button("Search");
-        //searchButton.setDefaultButton(true);
+        //searchButton.setDefaultButton(true); // possible feature; the enter key starts search
         searchButton.setOnAction(actionEvent -> {
             // do the search
             String actor1 = text1.getText();
@@ -54,7 +54,7 @@ public class SeparationWindow extends Application implements IWindow {
         root.add(backButton, 0, 10, 1, 1);
         root.add(searchButton, 2, 10, 1, 1);
 
-        scene = new Scene(root, 800, 600);
+        scene = new Scene(root, 800, 600); // change size?
     }
 
     // for testing only
@@ -87,7 +87,7 @@ public class SeparationWindow extends Application implements IWindow {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(getScene());
-        primaryStage.setTitle("Degrees of Actor Separation");
+        primaryStage.setTitle(getTitle());
         primaryStage.show();
     }
 }
