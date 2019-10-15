@@ -79,8 +79,9 @@ public class SeparationWindow implements IWindow{
         return "Degrees of Actor Separation";
     }
 
-    private void searchAction(ActionEvent actionEvent){
+    private synchronized void searchAction(ActionEvent actionEvent){
         if(!isSearching){
+            isSearching = true;
             // do the search
             String initialActorText = initialActor.getText();
             String targetActorText = targetActor.getText();
@@ -134,6 +135,7 @@ public class SeparationWindow implements IWindow{
             throw new RuntimeException(error.exception);
         }
         printResults.setText(resultsToString(result));
+        isSearching = false;
     }
 
     private String resultsToString(SeparationResult results){
