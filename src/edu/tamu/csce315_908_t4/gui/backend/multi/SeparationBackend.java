@@ -32,6 +32,9 @@ public class SeparationBackend{
 
     public BackendError getSeparation(SeparationArg args, ICallback<SeparationProgress> progressICallback,
                                       ICallback<SeparationResult> resultICallback){
+        if(args == null){
+            return BackendError.NULL_ARGS_ERROR(SeparationArg.class);
+        }
         executorService.submit(() -> {
             Queue<Job> jobQueue = new LinkedList<>();
             ConcurrentHashMap<Nconst, Link> nconstLinkHashMap = new ConcurrentHashMap<>();
