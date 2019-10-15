@@ -53,7 +53,6 @@ public class SeparationWindow extends Application implements IWindow {
         root.addRow(1, text1, text2, text3);
         root.add(backButton, 0, 10, 1, 1);
         root.add(searchButton, 2, 10, 1, 1);
-
         scene = new Scene(root, 800, 600); // change size?
     }
 

@@ -18,14 +18,14 @@ public class ListWindow extends Application implements IWindow {
     }
 
     public ListWindow(Frontend frontend, IBackend backend) {
+        Label label1 = new Label("Start Year");
+        Label label2 = new Label("End Year");
         TextField year1 = new TextField();
         TextField year2 = new TextField();
-        Label label1 = new Label();
-        Label label2 = new Label();
-        Button search = new Button("Search");
+        Button searchButton = new Button("Search");
         Button backButton = new Button("Back");
         backButton.setOnAction(frontend::backAction);
-        search.setOnAction(event -> {
+        searchButton.setOnAction(event -> {
 
         });
 
@@ -35,10 +35,9 @@ public class ListWindow extends Application implements IWindow {
         root.setAlignment(Pos.CENTER);
         // add stuff
         root.addRow(0, label1, label2);
-        root.add(year1, 0,1,2,2);
-        root.add(year2, 1, 1,2,2);
+        root.addRow(1, year1, year2);
         root.add(backButton, 0, 10, 1, 1);
-        root.add(search, 5,1,1,1);
+        root.add(searchButton, 5, 1, 1, 1);
         scene = new Scene(root, 800, 600); // change size?
     }
 
