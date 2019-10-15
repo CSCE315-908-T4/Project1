@@ -62,6 +62,7 @@ public class RecommendationWindow implements IWindow {
             page.add(search, 6,6,1,1);
             page.setHgap(10);
             page.setVgap(10);
+            scene = new Scene(page, 800,600);
         }
 
 
@@ -70,7 +71,6 @@ public class RecommendationWindow implements IWindow {
     }
 
     public Scene getScene() {
-        scene = new Scene(page, 300,400);
         return scene;
     }
 
