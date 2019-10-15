@@ -22,20 +22,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public class SeparationWindow implements IWindow{
-    boolean isSearching;
-    TextArea printResults;
-    private Frontend frontend;
+    private boolean isSearching;
+    private TextArea printResults;
     private IBackend backend;
 
     private Scene scene;
-    private GridPane root;
     private ExecutorService executorService;
     private TextField initialActor;
     private TextField targetActor;
     private TextField excludedActor;
 
+    @SuppressWarnings("WeakerAccess")
     public SeparationWindow(Frontend frontend, IBackend backend, ExecutorService executorService){
-        this.frontend = frontend;
         this.backend = backend;
         this.executorService = executorService;
         isSearching = false;
@@ -54,7 +52,7 @@ public class SeparationWindow implements IWindow{
         //searchButton.setDefaultButton(true); // possible feature; the enter key starts search
         searchButton.setOnAction(this::searchAction);
 
-        root = new GridPane();
+        GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
         root.setAlignment(Pos.CENTER);
