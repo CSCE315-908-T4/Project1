@@ -17,7 +17,7 @@ public class SeparationArg implements IArgument{
         return excludedActor;
     }
 
-    public void addExcludedActor(Nconst actor){
+    public void setExcludedActor(Nconst actor) {
         excludedActor = actor;
     }
 }

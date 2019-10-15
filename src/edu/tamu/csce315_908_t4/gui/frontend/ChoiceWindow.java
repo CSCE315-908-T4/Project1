@@ -18,13 +18,16 @@ public class ChoiceWindow extends Application implements IWindow {
     }
 
     public ChoiceWindow(Frontend frontend, IBackend backend) {
-        Label label1 = new Label("Title of Series");
+        Label label1 = new Label("Title of TV Series");
         TextField seriesTitle = new TextField();
         Button backButton = new Button("Back");
         backButton.setOnAction(frontend::backAction);
         Button searchButton = new Button("Search");
         searchButton.setOnAction(event -> {
-
+            String results = "TV Series: " + seriesTitle + "\n";
+            //String addEpisode = "Season " + episode.seasonNumber + "Episode #" + episode.episodeNumber;
+            //TextArea printResults = new TextArea(turnToString(results));
+            //root.add(printResults, 0, 2, 3, 8);
         });
 
         root = new GridPane();
@@ -46,7 +49,7 @@ public class ChoiceWindow extends Application implements IWindow {
 
     @Override
     public String getTitle() {
-        return "Team Choice";
+        return "Top 10 Rated Episodes in a TV Series";
     }
 
     // testing only

@@ -1,13 +1,9 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 
-
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
-import edu.tamu.csce315_908_t4.gui.backend.Nconst;
-import edu.tamu.csce315_908_t4.gui.backend.arguments.RecommendationArg;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -70,23 +66,10 @@ public class RecommendationWindow implements IWindow {
             scene = new Scene(page, 800,600);
         }
 
+
     private void searchAction(javafx.event.ActionEvent actionEvent) {
     }
 
-    class TableElements {
-
-        public String Title = null;
-        public int Year = 0;
-        public String Name = null;
-
-
-        public TableElements(String Title, int Year, String Name) {
-            this.Title = Title;
-            this.Year = Year;
-            this.Name = Name;
-        }
-
-    }
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -104,5 +87,26 @@ public class RecommendationWindow implements IWindow {
     public String getTitle() {
         return "FILMPEDIA Recommendations";
     }
+    class TableElements {
+
+        private String Title = null;
+        private int Year = 0;
+        private String Name = null;
+
+        public TableElements() {
+            Title = null;
+            Year = 0;
+            Name = null;
+        }
+
+        public TableElements(String Title, int Year, String Name) {
+            this.Title = Title;
+            this.Year = Year;
+            this.Name = Name;
+        }
+
+    }
 }
+
+
 

@@ -113,7 +113,7 @@ public class SeparationWindow implements IWindow{
                     }
 
                     SeparationArg separationArg = new SeparationArg(initialNconst, targetNconst);
-                    separationArg.addExcludedActor(excludedNconst);
+                    separationArg.setExcludedActor(excludedNconst);
                     BackendError error = backend.getSeparation(separationArg, this::progressCallback, this::resultCallback);
                     if(error.isError()){
                         throw new RuntimeException(error.exception);
