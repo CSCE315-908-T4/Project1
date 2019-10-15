@@ -5,10 +5,9 @@ public class RecommendationResult {
     public final String movieTitle;
     public final int year;
 
-    public RecommendationResult(String actor, String movie, int year)
-    {
-        actorName = actor;
-        movieTitle = movie;
+    public RecommendationResult(String actorName, String movieTitle, int year){
+        this.actorName = actorName;
+        this.movieTitle = movieTitle;
         this.year = year;
     }
 }

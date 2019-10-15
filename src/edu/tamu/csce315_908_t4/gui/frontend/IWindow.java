@@ -4,6 +4,5 @@ import javafx.scene.Scene;
 
 public interface IWindow{
     Scene getScene();
-
     String getTitle();
 }

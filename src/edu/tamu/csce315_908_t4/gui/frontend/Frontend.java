@@ -5,8 +5,12 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Frontend extends Application{
     private IBackend backend;
+    private ExecutorService executorService;
 
     private Stage primaryStage;
     private SelectWindow selectWindow;
@@ -19,11 +23,12 @@ public class Frontend extends Application{
     }
 
     public Frontend(){
-        backend = IBackend.getCurrent();
+        executorService = Executors.newCachedThreadPool();
+        backend = IBackend.getCurrent(executorService);
 
         primaryStage = null;
         selectWindow = new SelectWindow(this);
-        separationWindow = new SeparationWindow(this, backend);
+        separationWindow = new SeparationWindow(this, backend, executorService);
         recommendationWindow = new RecommendationWindow(this, backend);
     }
 

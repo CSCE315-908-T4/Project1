@@ -1,72 +1,47 @@
 package edu.tamu.csce315_908_t4.gui.backend;
 
-import edu.tamu.csce315_908_t4.gui.backend.arguments.StringArg;
-import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.RecommendationArg;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.SeparationArg;
+import edu.tamu.csce315_908_t4.gui.backend.multi.Backend;
+import edu.tamu.csce315_908_t4.gui.backend.progress.RecommendationProgress;
+import edu.tamu.csce315_908_t4.gui.backend.progress.SeparationProgress;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
-import javafx.util.Pair;
+import edu.tamu.csce315_908_t4.gui.backend.result.SeparationResult;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 public interface IBackend{
-    static IBackend getCurrent(){
-        return new Backend();
+    static IBackend getCurrent(ExecutorService executorService){
+        return new Backend(executorService);
     }
 
-    Pair<String, Integer> findClosestName(String in);
+    Future<BackendErrorData<ArrayList<Nconst>>> getNconst(String primaryName);
 
-    ArrayList<CharacterResult> getSeparation(SeparationArgs args);
+    Future<BackendErrorData<ArrayList<Nconst>>> getNconst(Collection<String> primaryNames);
 
-    ArrayList<RecommendationResult> getRecommendations(RecommendationArgs recommendationArgs);
+    Future<BackendErrorData<String>> getPrimaryName(Nconst nconst);
 
-    class SeparationArgs{
-        public final String initialActor;
-        public final String targetActor;
-        private final ArrayList<StringArg> excludedActors;
+    Future<BackendErrorData<ArrayList<String>>> getPrimaryName(Collection<Nconst> nconsts);
 
-        public SeparationArgs(String initialActor, String targetActor){
-            this.initialActor = initialActor;
-            this.targetActor = targetActor;
-            excludedActors = new ArrayList<>();
-        }
+    Future<BackendErrorData<ArrayList<Tconst>>> getTconst(String primaryTitle);
 
-        public ArrayList<StringArg> getExcludedActors(){
-            return excludedActors;
-        }
+    Future<BackendErrorData<ArrayList<Tconst>>> getTconst(Collection<String> primaryTitles);
 
-        public void addExcludedActor(StringArg actor){
-            excludedActors.add(actor);
-        }
-    }
+    Future<BackendErrorData<String>> getPrimaryTitle(Tconst tconst);
 
+    Future<BackendErrorData<ArrayList<String>>> getPrimaryTitle(Collection<Tconst> tconsts);
 
-    class RecommendationArgs{
-        public final String actor;
-        public final String genre;
-        public final int year;
+    Future<BackendErrorData<Integer>> getMovieYear(Tconst tconst);
 
-        public RecommendationArgs(String actor, String genre, int year)
-        {
-            this.actor = actor;
-            this.genre = genre;
-            this.year = year;
-        }
-    }
-    class ListArgs{
-        public final int year1;
-        public final int year2;
+    Future<BackendErrorData<ArrayList<Integer>>> getMovieYear(ArrayList<Tconst> tconsts);
 
-        public ListArgs(int year1, int year2)
-        {
-            this.year1 = year1;
-            this.year2 = year2;
-        }
-    }
+    BackendError getSeparation(SeparationArg args, ICallback<SeparationProgress> progressICallback,
+                               ICallback<SeparationResult> resultICallback);
 
-
-    // for testing only
-    static void main(String[] args){
-        IBackend backend = IBackend.getCurrent();
-        System.out.println(backend.findClosestName("John Birkin"));
-    }
+    BackendError getRecommendations(RecommendationArg recommendationArg,
+                                    ICallback<RecommendationProgress> progressICallback,
+                                    ICallback<RecommendationResult> resultICallback);
 }
