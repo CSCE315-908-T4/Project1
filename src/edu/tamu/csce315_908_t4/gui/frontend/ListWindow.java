@@ -38,7 +38,7 @@ public class ListWindow extends Application implements IWindow {
         root.add(year1, 0,1,2,2);
         root.add(year2, 1, 1,2,2);
         root.add(backButton, 0, 10, 1, 1);
-        root.add(search, 4,2,1,1);
+        root.add(search, 5,1,1,1);
         scene = new Scene(root, 800, 600); // change size?
     }
 
