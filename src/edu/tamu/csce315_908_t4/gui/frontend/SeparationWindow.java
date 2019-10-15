@@ -126,14 +126,10 @@ public class SeparationWindow implements IWindow{
         if(error.isError()){
             throw new RuntimeException(error.exception);
         }
-        try{
-            printResults.setText(resultsToString(result).get());
-        } catch(InterruptedException | ExecutionException e){
-            throw new RuntimeException(e);
-        }
+        printResults.setText(resultsToString(result));
     }
 
-    private Future<String> resultsToString(SeparationResult results){
+    private String resultsToString(SeparationResult results){
         ArrayList<FinalResult> finalResults = new ArrayList<>(results.subResults.size());
         for(SeparationResult.SubResult subResult : results.subResults){
             finalResults.add(new FinalResult(
@@ -146,8 +142,8 @@ public class SeparationWindow implements IWindow{
         Future<BackendErrorData<String>> initialNameFuture = backend.getPrimaryName(results.separationArg.initialNconst);
         Future<BackendErrorData<String>> targetNameFuture = backend.getPrimaryName(results.separationArg.targetNconst);
 
-        return executorService.submit(() -> {
-            StringBuilder out = new StringBuilder();
+        StringBuilder out = new StringBuilder();
+        try{
             for(FinalResult finalResult : finalResults){
                 out.append(finalResult.parentName.get().data)
                         .append(", ")
@@ -166,7 +162,9 @@ public class SeparationWindow implements IWindow{
                     .append(targetNameFuture.get().data)
                     .append(".\n");
             return out.toString();
-        });
+        } catch(InterruptedException | ExecutionException e){
+            throw new RuntimeException(e);
+        }
     }
 
     private static class FinalResult{
