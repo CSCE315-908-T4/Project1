@@ -1,13 +1,9 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 
-
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
-import edu.tamu.csce315_908_t4.gui.backend.Nconst;
-import edu.tamu.csce315_908_t4.gui.backend.arguments.RecommendationArg;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -35,10 +31,9 @@ public class RecommendationWindow implements IWindow {
             search.setOnAction(event -> {
                 //set up arguments for search
                 String actor = name.getText();
-                Nconst actorNconst = new Nconst(actor);
                 String Genre = genre.getText();
                 int Year = Integer.parseInt(year.getText());
-                RecommendationArg recommendationArgs= new RecommendationArg(actorNconst, Genre, Year);
+                IBackend.RecommendationArgs recommendationArgs = new IBackend.RecommendationArgs(actor, Genre, Year);
                 //do search
                 ArrayList<RecommendationResult> results = backend.getRecommendations(recommendationArgs);
                 //populate table;
@@ -68,25 +63,7 @@ public class RecommendationWindow implements IWindow {
             scene = new Scene(page, 800,600);
         }
 
-    class TableElements {
 
-        private String Title = null;
-        private int Year = 0;
-        private String Name = null;
-
-        public TableElements() {
-            Title = null;
-            Year = 0;
-            Name= null;
-        }
-
-        public TableElements(String Title, int Year, String Name) {
-            this.Title = Title;
-            this.Year = Year;
-            this.Name = Name;
-        }
-
-    }
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -107,3 +84,22 @@ public class RecommendationWindow implements IWindow {
     }
 }
 
+class TableElements {
+
+    private String Title = null;
+    private int Year = 0;
+    private String Name = null;
+
+    public TableElements() {
+        Title = null;
+        Year = 0;
+        Name = null;
+    }
+
+    public TableElements(String Title, int Year, String Name) {
+        this.Title = Title;
+        this.Year = Year;
+        this.Name = Name;
+    }
+
+}
