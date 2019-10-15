@@ -66,7 +66,7 @@ public class SeparationBackend{
                     futures.add(executorService.submit(() -> {
                         try{
 
-                            ArrayList<Pair<Nconst, Tconst>> relations = getRelated(job.nconst);
+                            ArrayList<Pair<Nconst, Tconst>> relations = getRelated(job.nconst, args.getExcludedActor());
                             for(Pair<Nconst, Tconst> related : relations){
                                 if(related.getKey().equals(args.targetNconst)){
                                     return new BackendErrorData<>(BackendError.NO_ERROR(), true);
@@ -130,10 +130,10 @@ public class SeparationBackend{
         return BackendError.NO_ERROR();
     }
 
-    private ArrayList<Pair<Nconst, Tconst>> getRelated(Nconst nconst) throws SQLException{
+    private ArrayList<Pair<Nconst, Tconst>> getRelated(Nconst nconst, Nconst excluded) throws SQLException{
         ResultSet resultSet = conn.createStatement().executeQuery(
                 "SELECT DISTINCT \"Principal\".nconst AS nconst FROM (\n" +
-                        "SELECT DISTINCT \"Principal\".tconst AS tconst FROM \"Principal\" WHERE \"Principal\".nconst = " + Backend.genSQL(nconst.value) + "\n" +
+                        "SELECT DISTINCT \"Principal\".tconst AS tconst FROM \"Principal\" WHERE \"Principal\".nconst = " + Backend.genSQL(nconst.value) + (excluded == null ? "" : " AND NOT \"Principal\".nconst = " + Backend.genSQL(excluded.value)) + "\n" +
                         ") AS \"PrincipalSub\" INNER JOIN \"Principal\" ON \"PrincipalSub\".tconst = \"Principal\".tconst"
         );
         ArrayList<Pair<Nconst, Tconst>> out = new ArrayList<>(resultSet.getFetchSize());

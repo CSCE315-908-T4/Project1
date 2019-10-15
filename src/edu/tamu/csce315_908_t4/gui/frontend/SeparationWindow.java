@@ -89,7 +89,10 @@ public class SeparationWindow implements IWindow{
             executorService.submit(() -> {
                 Future<BackendErrorData<ArrayList<Nconst>>> initialNconstFuture = backend.getNconst(initialActorText);
                 Future<BackendErrorData<ArrayList<Nconst>>> targetNconstFuture = backend.getNconst(targetActorText);
-                Future<BackendErrorData<ArrayList<Nconst>>> excludedNconstFuture = backend.getNconst(excludedActorText);
+                Future<BackendErrorData<ArrayList<Nconst>>> excludedNconstFuture = null;
+                if(!excludedActorText.equals("")){
+                    excludedNconstFuture = backend.getNconst(excludedActorText);
+                }
                 try{
                     if(initialNconstFuture.get().isError()){
                         throw new RuntimeException(initialNconstFuture.get().error.exception);
@@ -97,13 +100,17 @@ public class SeparationWindow implements IWindow{
                     if(targetNconstFuture.get().isError()){
                         throw new RuntimeException(targetNconstFuture.get().error.exception);
                     }
-                    if(excludedNconstFuture.get().isError()){
+                    if(excludedNconstFuture != null && excludedNconstFuture.get().isError()){
                         throw new RuntimeException(excludedNconstFuture.get().error.exception);
                     }
 
                     Nconst initialNconst = initialNconstFuture.get().data.get(0);
                     Nconst targetNconst = targetNconstFuture.get().data.get(0);
-                    Nconst excludedNconst = excludedNconstFuture.get().data.get(0);
+                    Nconst excludedNconst = null;
+
+                    if(excludedNconstFuture != null){
+                        excludedNconst = excludedNconstFuture.get().data.get(0);
+                    }
 
                     SeparationArg separationArg = new SeparationArg(initialNconst, targetNconst);
                     separationArg.addExcludedActor(excludedNconst);
