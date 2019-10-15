@@ -38,11 +38,12 @@ public class RecommendationWindow implements IWindow {
                 IBackend.RecommendationArgs recommendationArgs= new IBackend.RecommendationArgs(actor, Genre, Year);
                 //do search
                 ArrayList<RecommendationResult> results = backend.getRecommendations(recommendationArgs);
+                //populate table;
                 int i;
                 for(i = 0; i<5; i++){
                     table.getItems().add(new TableElements(results.get(i).movieTitle, results.get(i).year,results.get(i).actorName));
                 }
-                //populate table and show scene
+                //show scene
                 VBox vbox = new VBox(table, back);
                 scene = new Scene(vbox, 300, 400);
             });
@@ -94,6 +95,9 @@ class TableElements {
     private String Name = null;
 
     public TableElements() {
+        Title = null;
+        Year = 0;
+        Name= null;
     }
 
     public TableElements(String Title, int Year, String Name) {
