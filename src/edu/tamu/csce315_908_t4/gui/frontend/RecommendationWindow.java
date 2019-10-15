@@ -80,12 +80,9 @@ public class RecommendationWindow implements IWindow {
         primaryStage.show();
     }
 
-
-
-
     @Override
     public String getTitle() {
-        return null;
+        return "FILMPEDIA Recommendations";
     }
 }
 class TableElements {

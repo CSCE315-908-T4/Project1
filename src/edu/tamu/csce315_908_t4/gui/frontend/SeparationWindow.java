@@ -6,10 +6,7 @@ import edu.tamu.csce315_908_t4.gui.backend.result.CharacterResult;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -19,8 +16,7 @@ public class SeparationWindow extends Application implements IWindow {
     private Scene scene;
     private GridPane root;
 
-    public SeparationWindow() {
-    }
+    public SeparationWindow() {}
 
     public SeparationWindow(Frontend frontend, IBackend backend) {
         Label label1 = new Label("Actor 1");
