@@ -90,7 +90,7 @@ public class RecommendationWindow implements IWindow {
     }
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(getScene());
-        primaryStage.setTitle("FILMPEDIA Recommendations");
+        primaryStage.getTitle();
         primaryStage.show();
     }
 
