@@ -17,12 +17,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public class Backend implements IBackend{
-    public static final int DEPTH_LIMIT = 6;
-
     private final Connection conn;
     private final ExecutorService executorService;
 
-    SeparationBackend separationBackend;
+    private SeparationBackend separationBackend;
 
     public Backend(ExecutorService executorService){
         conn = DatabaseData.getConnection();
@@ -31,7 +29,7 @@ public class Backend implements IBackend{
         separationBackend = new SeparationBackend(conn, executorService, this);
     }
 
-    public static String genSQL(String string){
+    static String genSQL(String string){
         if(string == null){
             return "NULL";
         }
@@ -172,15 +170,7 @@ public class Backend implements IBackend{
             }
             try{
                 StringBuilder sql = new StringBuilder("SELECT \"Title\".\"primaryTitle\" WHERE ");
-                boolean first = true;
-                for(Tconst tconst : tconsts){
-                    if(!first){
-                        sql.append("OR ");
-                    }
-                    sql.append("\"tconst\" = ").append(genSQL(tconst.value)).append(" ");
-                    first = false;
-                }
-                ResultSet resultSet = conn.createStatement().executeQuery(sql.toString());
+                ResultSet resultSet = addOrs(tconsts, sql);
                 ArrayList<String> out = new ArrayList<>(resultSet.getFetchSize());
                 while(resultSet.next()){
                     out.add(resultSet.getString("primaryTitle"));
@@ -190,6 +180,18 @@ public class Backend implements IBackend{
                 return new BackendErrorData<>(BackendError.SQL_ERROR(e), null);
             }
         });
+    }
+
+    private ResultSet addOrs(Collection<Tconst> tconsts, StringBuilder sql) throws SQLException{
+        boolean first = true;
+        for(Tconst tconst : tconsts){
+            if(!first){
+                sql.append("OR ");
+            }
+            sql.append("\"tconst\" = ").append(genSQL(tconst.value)).append(" ");
+            first = false;
+        }
+        return conn.createStatement().executeQuery(sql.toString());
     }
 
     @Override
@@ -213,15 +215,7 @@ public class Backend implements IBackend{
             }
             try{
                 StringBuilder sql = new StringBuilder("SELECT \"Title\".\"startYear\" WHERE ");
-                boolean first = true;
-                for(Tconst tconst : tconsts){
-                    if(!first){
-                        sql.append("OR ");
-                    }
-                    sql.append("\"tconst\" = ").append(genSQL(tconst.value)).append(" ");
-                    first = false;
-                }
-                ResultSet resultSet = conn.createStatement().executeQuery(sql.toString());
+                ResultSet resultSet = addOrs(tconsts, sql);
                 ArrayList<Integer> out = new ArrayList<>(resultSet.getFetchSize());
                 while(resultSet.next()){
                     out.add(resultSet.getInt("startYear"));
