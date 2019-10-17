@@ -29,7 +29,7 @@ public class Frontend extends Application{
         primaryStage = null;
         selectWindow = new SelectWindow(this);
         separationWindow = new SeparationWindow(this, backend, executorService);
-        recommendationWindow = new RecommendationWindow(this, backend);
+        recommendationWindow = new RecommendationWindow(this, backend, executorService);
     }
 
     @Override

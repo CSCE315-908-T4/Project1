@@ -12,7 +12,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
@@ -51,6 +51,7 @@ public class RecommendationWindow implements IWindow {
             back.setOnAction(frontend::backAction);
             search.setOnAction(this::searchAction);
             page = new GridPane();
+            page.setAlignment(Pos.CENTER);
             page.addRow(0, label1, label2, label3);
             page.add(name, 0,1,2,1 );
             page.add(year, 1,1,2,1);
