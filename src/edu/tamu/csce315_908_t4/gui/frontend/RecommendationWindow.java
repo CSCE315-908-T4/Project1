@@ -1,7 +1,12 @@
 package edu.tamu.csce315_908_t4.gui.frontend;
 
 
+import edu.tamu.csce315_908_t4.gui.backend.BackendError;
+import edu.tamu.csce315_908_t4.gui.backend.BackendErrorData;
 import edu.tamu.csce315_908_t4.gui.backend.IBackend;
+import edu.tamu.csce315_908_t4.gui.backend.Nconst;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.RecommendationArg;
+import edu.tamu.csce315_908_t4.gui.backend.progress.RecommendationProgress;
 import edu.tamu.csce315_908_t4.gui.backend.result.RecommendationResult;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,7 +17,9 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 public class RecommendationWindow implements IWindow {
 
@@ -27,7 +34,7 @@ public class RecommendationWindow implements IWindow {
         private TextField genre;
         public RecommendationWindow(Frontend frontend, IBackend backend, ExecutorService executorService)
         {
-            isSearching = true;
+            isSearching = false;
             this.frontend = frontend;
             this.backend = backend;
             this.executorService = executorService;
@@ -79,6 +86,43 @@ public class RecommendationWindow implements IWindow {
 //                VBox vbox = new VBox(table, back);
 //                scene = new Scene(vbox, 300, 400);
 //            });
+            if(!isSearching)
+            {
+                isSearching = true;
+                String actorText = name.getText();
+                String genreText = genre.getText();
+                int yearInt = Integer.parseInt(year.getText());
+
+                executorService.submit(() -> {
+                    Future<BackendErrorData<ArrayList<Nconst>>> NconstFuture = backend.getNconst(actorText);
+                    try{
+                        if(NconstFuture.get().isError()){
+                            throw new RuntimeException(NconstFuture.get().error.exception);
+                        }
+
+                        Nconst initialNconst = NconstFuture.get().data.get(0);
+                        RecommendationArg recommendationArg = new RecommendationArg(initialNconst,genreText, yearInt );
+                        BackendError error = backend.getRecommendations(recommendationArg, this::progressCallback, this::resultCallback);
+                        if(error.isError()){
+                            throw new RuntimeException(error.exception);
+                        }
+                    } catch(InterruptedException | ExecutionException e){
+                        throw new RuntimeException(e);
+                    }
+                });
+
+            }
+    }
+
+    private void resultCallback(BackendError error, RecommendationResult result) {
+        if(error.isError()){
+            throw new RuntimeException(error.exception);
+        }
+        //printResults.setText(resultsToString(result));
+        isSearching = false;
+    }
+
+    private void progressCallback(BackendError backendError, RecommendationProgress recommendationProgress) {
     }
 
     public static void main(String[] args) {
