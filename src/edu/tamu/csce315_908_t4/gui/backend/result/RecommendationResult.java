@@ -1,13 +1,28 @@
 package edu.tamu.csce315_908_t4.gui.backend.result;
 
-public class RecommendationResult {
-    public final String actorName;
-    public final String movieTitle;
-    public final int year;
+import edu.tamu.csce315_908_t4.gui.backend.Nconst;
+import edu.tamu.csce315_908_t4.gui.backend.Tconst;
+import edu.tamu.csce315_908_t4.gui.backend.arguments.RecommendationArg;
 
-    public RecommendationResult(String actorName, String movieTitle, int year){
-        this.actorName = actorName;
-        this.movieTitle = movieTitle;
-        this.year = year;
+import java.util.LinkedList;
+
+public class RecommendationResult {
+    public final LinkedList<SubResult> subResults;
+    public final RecommendationArg recommendationArg;
+
+    public RecommendationResult(RecommendationArg recommendationArg){
+        subResults = new LinkedList<>();
+        this.recommendationArg = recommendationArg;
+    }
+    public static class SubResult{
+        public final Nconst actorNconst;
+        public final Integer movieYear;
+        public final Tconst movieTconst;
+
+        public SubResult(Nconst actorNconst, int movieYear, Tconst movieTconst){
+            this.actorNconst = actorNconst;
+            this.movieYear = movieYear;
+            this.movieTconst = movieTconst;
+        }
     }
 }

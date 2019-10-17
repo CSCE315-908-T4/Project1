@@ -1,6 +1,7 @@
 package edu.tamu.csce315_908_t4.gui.backend.arguments;
 
 import edu.tamu.csce315_908_t4.gui.backend.Nconst;
+import edu.tamu.csce315_908_t4.gui.backend.Tconst;
 
 public class RecommendationArg implements IArgument{
     public final Nconst actorNconst;
@@ -12,4 +13,5 @@ public class RecommendationArg implements IArgument{
         this.genre = genre;
         this.year = year;
     }
+
 }
