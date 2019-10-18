@@ -17,6 +17,14 @@ public class ChoiceWindow extends Application implements IWindow {
     public ChoiceWindow() {
     }
 
+    /**
+     * window for question 3, our choice
+     * we choose to return the
+     * top 10 rated epiodes in a TV series
+     *
+     * @param frontend
+     * @param backend
+     */
     public ChoiceWindow(Frontend frontend, IBackend backend) {
         Label label1 = new Label("Title of TV Series");
         TextField seriesTitle = new TextField();

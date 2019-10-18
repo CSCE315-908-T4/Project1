@@ -11,7 +11,6 @@ import java.util.concurrent.Executors;
 public class Frontend extends Application{
     private IBackend backend;
     private ExecutorService executorService;
-
     private Stage primaryStage;
     private SelectWindow selectWindow;
     private SeparationWindow separationWindow;
@@ -22,6 +21,9 @@ public class Frontend extends Application{
         Application.launch(args);
     }
 
+    /**
+     * Creates GUI
+     */
     public Frontend(){
         executorService = Executors.newCachedThreadPool();
         backend = IBackend.getCurrent(executorService);
@@ -40,19 +42,36 @@ public class Frontend extends Application{
         primaryStage.show();
     }
 
+    /**
+     * switch to the scene we want
+     *
+     * @param window
+     */
     private void changeScene(IWindow window){
         primaryStage.setScene(window.getScene());
         primaryStage.setTitle(window.getTitle());
     }
 
+    /**
+     * Return to previous/Start window
+     * @param actionEvent
+     */
     public void backAction(ActionEvent actionEvent){
         changeScene(selectWindow);
     }
 
+    /**
+     * go to SeparationWindow
+     * @param actionEvent
+     */
     public void separationAction(ActionEvent actionEvent){
         changeScene(separationWindow);
     }
 
+    /**
+     * go to Recommendation Window
+     * @param actionEvent
+     */
     public void recommendationAction(ActionEvent actionEvent){
         changeScene(recommendationWindow);
     }

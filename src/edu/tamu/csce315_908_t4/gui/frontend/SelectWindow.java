@@ -11,11 +11,20 @@ public class SelectWindow implements IWindow{
 
     private Scene scene;
 
+    /**
+     * start window that has 4 buttons to select which option to run
+     *
+     * @param frontend
+     */
     public SelectWindow(Frontend frontend){
         Button separationButton = new Button("Degrees of Actor Separation");
         Button listButton = new Button("Shortest List");
         Button choiceButton = new Button("Team Choice");
         Button recommendationButton = new Button("Recommend a Movie");
+        separationButton.setMinWidth(30);
+        listButton.setMinWidth(30);
+        choiceButton.setMinWidth(30);
+        recommendationButton.setMinWidth(30);
 
         separationButton.setOnAction(frontend::separationAction);
         recommendationButton.setOnAction(frontend::recommendationAction);

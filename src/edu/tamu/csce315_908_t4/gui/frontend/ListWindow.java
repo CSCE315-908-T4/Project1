@@ -17,6 +17,12 @@ public class ListWindow extends Application implements IWindow {
     public ListWindow() {
     }
 
+    /**
+     * window for question 2
+     *
+     * @param frontend
+     * @param backend
+     */
     public ListWindow(Frontend frontend, IBackend backend) {
         //initializing window elements
         Label label1 = new Label("Start Year");

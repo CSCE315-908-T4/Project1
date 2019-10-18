@@ -25,13 +25,19 @@ public class SeparationWindow implements IWindow{
     private boolean isSearching;
     private TextArea printResults;
     private IBackend backend;
-
     private Scene scene;
     private ExecutorService executorService;
     private TextField initialActor;
     private TextField targetActor;
     private TextField excludedActor;
 
+    /**
+     * window for the degrees of separation problem
+     *
+     * @param frontend
+     * @param backend
+     * @param executorService
+     */
     @SuppressWarnings("WeakerAccess")
     public SeparationWindow(Frontend frontend, IBackend backend, ExecutorService executorService){
         this.backend = backend;
@@ -77,6 +83,10 @@ public class SeparationWindow implements IWindow{
         return "Degrees of Actor Separation";
     }
 
+    /**
+     * used for search button
+     * @param actionEvent
+     */
     private synchronized void searchAction(ActionEvent actionEvent){
         if(!isSearching){
             isSearching = true;
@@ -128,6 +138,11 @@ public class SeparationWindow implements IWindow{
 
     }
 
+    /**
+     *
+     * @param error
+     * @param result
+     */
     private void resultCallback(BackendError error, SeparationResult result){
         if(error.isError()){
             throw new RuntimeException(error.exception);
@@ -136,6 +151,11 @@ public class SeparationWindow implements IWindow{
         isSearching = false;
     }
 
+    /**
+     *
+     * @param results
+     * @return string for output
+     */
     private String resultsToString(SeparationResult results){
         ArrayList<FinalResult> finalResults = new ArrayList<>(results.subResults.size());
         for(SeparationResult.SubResult subResult : results.subResults){
@@ -174,6 +194,9 @@ public class SeparationWindow implements IWindow{
         }
     }
 
+    /**
+     *
+     */
     private static class FinalResult{
         private final Future<BackendErrorData<String>> childName;
         private final Future<BackendErrorData<String>> parentName;
