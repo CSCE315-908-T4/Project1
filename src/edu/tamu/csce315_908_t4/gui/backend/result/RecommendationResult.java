@@ -14,6 +14,7 @@ public class RecommendationResult {
         subResults = new LinkedList<>();
         this.recommendationArg = recommendationArg;
     }
+    //class to separate each of the recommendations in the recommendation result
     public static class SubResult{
         public final Nconst actorNconst;
         public final Integer movieYear;

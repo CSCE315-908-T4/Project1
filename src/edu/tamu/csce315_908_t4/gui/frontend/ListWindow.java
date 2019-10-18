@@ -18,6 +18,7 @@ public class ListWindow extends Application implements IWindow {
     }
 
     public ListWindow(Frontend frontend, IBackend backend) {
+        //initializing window elements
         Label label1 = new Label("Start Year");
         Label label2 = new Label("End Year");
         TextField year1 = new TextField();
@@ -28,12 +29,12 @@ public class ListWindow extends Application implements IWindow {
         searchButton.setOnAction(event -> {
 
         });
-
+        //setting up the window
         root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
         root.setAlignment(Pos.CENTER);
-        // add stuff
+        // adding elements to the window
         root.addRow(0, label1, label2);
         root.addRow(1, year1, year2);
         root.add(backButton, 0, 10, 1, 1);

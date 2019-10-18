@@ -35,10 +35,12 @@ public class RecommendationWindow implements IWindow {
         private TextArea printResults;
         public RecommendationWindow(Frontend frontend, IBackend backend, ExecutorService executorService)
         {
+
             isSearching = false;
             this.frontend = frontend;
             this.backend = backend;
             this.executorService = executorService;
+            //initializing all the elements in the page
             name = new TextField();
             year = new TextField();
             genre = new TextField();
@@ -50,6 +52,7 @@ public class RecommendationWindow implements IWindow {
             Button search = new Button("Generate Recommendations");
             back.setOnAction(frontend::backAction);
             search.setOnAction(this::searchAction);
+            //setting up the page
             page = new GridPane();
             page.setAlignment(Pos.CENTER);
             page.addRow(0, label1, label2, label3);
@@ -93,7 +96,7 @@ public class RecommendationWindow implements IWindow {
 
             }
     }
-
+    //function to check for errors in the recommendation result
     private void resultCallback(BackendError error, RecommendationResult result) {
         if(error.isError()){
             throw new RuntimeException(error.exception);
@@ -101,7 +104,7 @@ public class RecommendationWindow implements IWindow {
         printResults.setText(resultsToString(result));
         isSearching = false;
     }
-
+    //using string builder to output the recommendation results
     private String resultsToString(RecommendationResult results) {
         ArrayList<FinalResult> finalResults = new ArrayList<FinalResult>(results.subResults.size());
         for(RecommendationResult.SubResult subResult : results.subResults){
@@ -144,6 +147,7 @@ public class RecommendationWindow implements IWindow {
     public String getTitle() {
         return "FILMPEDIA Recommendations";
     }
+    //class to sort the elements for the results output, and check for errors
     private static class FinalResult{
         private final Future<BackendErrorData<String>> movieName;
         private final Future<BackendErrorData<Integer>> movieYear;
