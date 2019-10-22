@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.geometry.Pos;
 
 public class ListWindow extends Application implements IWindow {
     private Scene scene;
@@ -45,6 +46,7 @@ public class ListWindow extends Application implements IWindow {
         root.addRow(1, year1, year2);
         root.add(backButton, 0, 10, 1, 1);
         root.add(searchButton, 5, 1, 1, 1);
+        root.setAlignment(Pos.CENTER);
         scene = new Scene(root, 800, 600); // change size?
     }
 
