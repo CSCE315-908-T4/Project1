@@ -1,6 +1,6 @@
 package edu.tamu.csce315_908_t4.imdbConverter;
 
-import edu.tamu.csce315_908_t4.database.Database;
+import edu.tamu.csce315_908_t4.gui.backend.DatabaseData;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,7 +24,7 @@ public class IMDBConverter{
         executorService = Executors.newFixedThreadPool(threads);
         System.out.println("Beginning with " + threads + " threads");
         System.out.println("Obtaining Connection");
-        Connection conn = Database.getConnection();
+        Connection conn = DatabaseData.getConnection();
         System.out.println("Connection Obtained");
 //        executorService.submit(() -> sqlTry(() -> convertNameBasics(conn)));
         executorService.submit(() -> sqlTry(() -> convertTitleBasics(conn)));

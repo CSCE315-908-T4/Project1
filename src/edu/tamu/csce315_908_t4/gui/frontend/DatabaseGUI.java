@@ -27,6 +27,9 @@ public class DatabaseGUI extends JFrame implements ActionListener {
     private int searchBarWidth = 500;
     private int height = 40;
 
+    /**
+     * original GUI design before switching to JavaFX
+     */
     public DatabaseGUI() {
         // query side
         addButton = new JButton("Add");

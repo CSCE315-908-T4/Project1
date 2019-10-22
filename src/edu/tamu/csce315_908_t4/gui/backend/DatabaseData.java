@@ -1,10 +1,10 @@
-package edu.tamu.csce315_908_t4.database;
+package edu.tamu.csce315_908_t4.gui.backend;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Database{
+public class DatabaseData{
     private static final String DATABASE_URL = "jdbc:postgresql://db-315.cse.tamu.edu/CSCE315-908-T4_MovieDB";
     private static final String DATABASE_USERNAME = "Buzzec";
     private static final String DATABASE_PASSWORD = "#E?Ez>wCg=x+-#sDn2xA*rq33";
