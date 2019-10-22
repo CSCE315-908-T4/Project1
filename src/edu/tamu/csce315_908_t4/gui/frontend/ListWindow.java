@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 
+import java.util.concurrent.ExecutorService;
+
 public class ListWindow extends Application implements IWindow {
     private Scene scene;
     private GridPane root;
@@ -24,7 +26,7 @@ public class ListWindow extends Application implements IWindow {
      * @param frontend
      * @param backend
      */
-    public ListWindow(Frontend frontend, IBackend backend) {
+    public ListWindow(Frontend frontend, IBackend backend, ExecutorService executorService) {
         //initializing window elements
         Label label1 = new Label("Start Year");
         Label label2 = new Label("End Year");
